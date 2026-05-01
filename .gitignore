@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Old portfolio files (pre-React migration)
+Portfolio.html
+main.js
+design.md
+interaction.md
+outline.md
+
+# Root-level assets folder (old files; served assets live in public/)
+assets/
+
+# Build output
+dist/
+
+# Local dev
+*.local
+.env
+.env.*
+!.env.example
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
