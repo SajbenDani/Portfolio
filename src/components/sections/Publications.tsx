@@ -4,6 +4,7 @@ import { publications } from '@/data/publications'
 import SectionHeading from '@/components/shared/SectionHeading'
 import GlassCard from '@/components/shared/GlassCard'
 import { LiquidButton } from '@/components/ui/liquid-glass-button'
+import { asset } from '@/lib/utils'
 
 const statusStyle = {
   'under review': 'text-copper-lite bg-copper/12 border-copper/30',
@@ -105,7 +106,7 @@ export default function Publications() {
                   ))}
                 </div>
                 {pub.pdf && (
-                  <LiquidButton size="sm" className="text-copper-lite" onClick={() => window.open(pub.pdf, '_blank')}>
+                  <LiquidButton size="sm" className="text-copper-lite" onClick={() => window.open(asset(pub.pdf!), '_blank')}>
                     <ExternalLink size={14} className="mr-1.5" />
                     Read Paper
                   </LiquidButton>

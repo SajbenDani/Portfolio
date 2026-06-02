@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Github, ExternalLink, Play, BookOpen, Trophy, Lock, PlayCircle } from 'lucide-react'
 import { type Project } from '@/data/projects'
 import ProjectArtwork from '@/components/shared/ProjectArtwork'
+import { asset } from '@/lib/utils'
 
 const categoryLabel: Record<string, string> = {
   ai: 'AI / ML',
@@ -40,7 +41,7 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
       return
     }
     const url = getPrimaryLink(project)
-    if (url) window.open(url, '_blank', 'noopener noreferrer')
+    if (url) window.open(asset(url), '_blank', 'noopener noreferrer')
   }
 
   return (
@@ -188,7 +189,7 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
             )}
             {project.pdf && (
               <a
-                href={project.pdf}
+                href={asset(project.pdf)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 text-xs text-white/50 hover:text-copper transition-colors"

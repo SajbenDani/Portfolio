@@ -5,6 +5,7 @@ import { experiences } from '@/data/experience'
 import SectionHeading from '@/components/shared/SectionHeading'
 import GlassCard from '@/components/shared/GlassCard'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { asset } from '@/lib/utils'
 
 const typeIcon = {
   work: Briefcase,
@@ -92,7 +93,7 @@ function TimelineItem({
             </div>
             {exp.pdf && (
               <a
-                href={exp.pdf}
+                href={asset(exp.pdf)}
                 download
                 className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono text-copper bg-copper/[0.08] border border-copper/25 hover:bg-copper/[0.15] transition-colors flex-shrink-0"
               >

@@ -3,6 +3,7 @@ import { Mail, MapPin, Github, Linkedin } from 'lucide-react'
 import { LiquidButton } from '@/components/ui/liquid-glass-button'
 import SectionHeading from '@/components/shared/SectionHeading'
 import GlassCard from '@/components/shared/GlassCard'
+import { asset } from '@/lib/utils'
 
 const socials = [
   { icon: Github, href: 'https://github.com/SajbenDani', label: 'GitHub' },
@@ -60,7 +61,7 @@ export default function Contact() {
           <LiquidButton
             size="xl"
             className="text-foreground/70"
-            onClick={() => window.open('/SajbenDánielCV.pdf', '_blank')}
+            onClick={() => window.open(asset('/SajbenDánielCV.pdf'), '_blank')}
           >
             Download CV
           </LiquidButton>

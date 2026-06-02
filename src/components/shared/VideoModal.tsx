@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
+import { asset } from '@/lib/utils'
 
 interface VideoModalProps {
   isOpen: boolean
@@ -44,7 +45,7 @@ export default function VideoModal({ isOpen, src, onClose }: VideoModalProps) {
               <X size={24} />
             </button>
             <video
-              src={src}
+              src={asset(src)}
               controls
               autoPlay
               className="w-full rounded-xl border border-white/10"

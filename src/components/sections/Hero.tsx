@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react'
 import { LiquidButton } from '@/components/ui/liquid-glass-button'
+import { asset } from '@/lib/utils'
 
 const roles = [
   'AI Researcher',
@@ -133,7 +134,7 @@ export default function Hero() {
             <LiquidButton
               size="xl"
               className="text-foreground/70"
-              onClick={() => window.open('/SajbenDánielCV.pdf', '_blank')}
+              onClick={() => window.open(asset('/SajbenDánielCV.pdf'), '_blank')}
             >
               Download CV
             </LiquidButton>
