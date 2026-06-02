@@ -1,8 +1,10 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useSpring } from 'framer-motion'
 import { Briefcase, GraduationCap, FlaskConical, Download } from 'lucide-react'
 import { experiences } from '@/data/experience'
 import SectionHeading from '@/components/shared/SectionHeading'
 import GlassCard from '@/components/shared/GlassCard'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 const typeIcon = {
   work: Briefcase,
@@ -11,116 +13,132 @@ const typeIcon = {
 }
 
 const typeColor = {
-  work: 'text-[#00d4ff] bg-[#00d4ff]/10',
-  education: 'text-indigo-400 bg-indigo-400/10',
-  research: 'text-violet-400 bg-violet-400/10',
+  work: 'text-copper-lite bg-copper/12',
+  education: 'text-copper bg-copper/12',
+  research: 'text-copper-lite bg-bronze/20',
 }
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
-}
+function TimelineItem({
+  exp,
+  index,
+  reduced,
+}: {
+  exp: (typeof experiences)[number]
+  index: number
+  reduced: boolean
+}) {
+  const Icon = typeIcon[exp.type]
+  const colorClass = typeColor[exp.type]
 
-const itemVariants = {
-  hidden: { opacity: 0, x: -40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as const } },
+  return (
+    <div className="relative" style={{ perspective: '900px' }}>
+      {/* Spine node */}
+      <div className="absolute -left-9 top-5">
+        <motion.div
+          className={`w-10 h-10 rounded-full flex items-center justify-center ${colorClass}`}
+          initial={{ scale: 0 }}
+          whileInView={{
+            scale: 1,
+            boxShadow: [
+              '0 0 0px rgba(200,126,84,0)',
+              '0 0 14px rgba(200,126,84,0.45)',
+              '0 0 0px rgba(200,126,84,0)',
+            ],
+          }}
+          viewport={{ once: true }}
+          transition={{
+            scale: { delay: index * 0.05 + 0.2, type: 'spring', stiffness: 300, damping: 20 },
+            boxShadow: { duration: 2.6, repeat: Infinity, delay: index * 0.3, ease: 'easeInOut' },
+          }}
+        >
+          <Icon size={16} />
+        </motion.div>
+      </div>
+
+      {/* Card — swings in to face the viewer */}
+      <motion.div
+        initial={
+          reduced
+            ? { opacity: 0 }
+            : { opacity: 0, rotateY: -32, x: 28 }
+        }
+        whileInView={reduced ? { opacity: 1 } : { opacity: 1, rotateY: 0, x: 0 }}
+        viewport={{ once: true, margin: '-70px' }}
+        transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
+        style={{ transformPerspective: 900, transformOrigin: 'left center' }}
+      >
+        <GlassCard className="p-5">
+          <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
+            <div>
+              <h3 className="font-semibold text-white text-base">{exp.role}</h3>
+              <p className="text-copper text-sm">{exp.org}</p>
+            </div>
+            <div className="text-right text-xs text-white/40">
+              <p className="font-mono">{exp.period}</p>
+              <p>{exp.location}</p>
+            </div>
+          </div>
+          <p className="text-sm text-white/55 leading-relaxed mb-3">{exp.description}</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap gap-1.5 flex-1">
+              {exp.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2 py-0.5 rounded text-xs font-mono text-white/50 bg-white/[0.04] border border-white/[0.07]"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            {exp.pdf && (
+              <a
+                href={exp.pdf}
+                download
+                className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono text-copper bg-copper/[0.08] border border-copper/25 hover:bg-copper/[0.15] transition-colors flex-shrink-0"
+              >
+                <Download size={12} />
+                {exp.pdfLabel ?? 'Download'}
+              </a>
+            )}
+          </div>
+        </GlassCard>
+      </motion.div>
+    </div>
+  )
 }
 
 export default function Experience() {
+  const ref = useRef<HTMLDivElement>(null)
+  const reduced = useReducedMotion()
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start 75%', 'end 65%'],
+  })
+  const fill = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.4 })
+
   return (
     <section id="experience" className="py-24 px-4 md:px-6 max-w-6xl mx-auto">
       <SectionHeading
+        index="03"
         plain="Experience &"
         accent="Education"
         subtitle="My professional journey so far"
       />
 
-      <div className="relative max-w-3xl mx-auto">
-        {/* Animated vertical timeline line */}
+      <div ref={ref} className="relative max-w-3xl mx-auto">
+        {/* Spine track */}
+        <div className="absolute left-5 top-0 bottom-0 w-px bg-white/[0.08]" />
+        {/* Spine fill — draws in with scroll (echo of the star-pole) */}
         <motion.div
-          className="absolute left-5 top-0 w-0.5 bg-gradient-to-b from-[#00d4ff] via-indigo-500/50 to-transparent"
-          initial={{ scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
-          transition={{ duration: 1.4, ease: 'easeOut' }}
-          viewport={{ once: true }}
-          style={{ transformOrigin: 'top', height: '100%' }}
+          className="absolute left-5 top-0 bottom-0 w-px origin-top bg-gradient-to-b from-copper-lite via-copper to-bronze shadow-[0_0_10px_rgba(200,126,84,0.5)]"
+          style={{ scaleY: reduced ? 1 : fill }}
         />
 
-        <motion.div
-          className="space-y-6 pl-14"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-        >
-          {experiences.map((exp, i) => {
-            const Icon = typeIcon[exp.type]
-            const colorClass = typeColor[exp.type]
-            return (
-              <motion.div key={exp.id} variants={itemVariants} className="relative">
-                {/* Timeline dot */}
-                <div className="absolute -left-9 top-5">
-                  <motion.div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center ${colorClass}`}
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    animate={{
-                      scale: 1,
-                      boxShadow: [
-                        '0 0 0px rgba(0,212,255,0)',
-                        '0 0 12px rgba(0,212,255,0.35)',
-                        '0 0 0px rgba(0,212,255,0)',
-                      ],
-                    }}
-                    transition={{
-                      scale: { delay: i * 0.15 + 0.3, type: 'spring', stiffness: 300, damping: 20 },
-                      boxShadow: { duration: 2.5, repeat: Infinity, delay: i * 0.4, ease: 'easeInOut' },
-                    }}
-                  >
-                    <Icon size={16} />
-                  </motion.div>
-                </div>
-
-                <GlassCard className="p-5">
-                  <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
-                    <div>
-                      <h3 className="font-semibold text-white text-base">{exp.role}</h3>
-                      <p className="text-[#00d4ff] text-sm">{exp.org}</p>
-                    </div>
-                    <div className="text-right text-xs text-white/40">
-                      <p className="font-mono">{exp.period}</p>
-                      <p>{exp.location}</p>
-                    </div>
-                  </div>
-                  <p className="text-sm text-white/55 leading-relaxed mb-3">{exp.description}</p>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <div className="flex flex-wrap gap-1.5 flex-1">
-                      {exp.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-0.5 rounded text-xs font-mono text-white/50 bg-white/[0.04] border border-white/[0.07]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    {exp.pdf && (
-                      <a
-                        href={exp.pdf}
-                        download
-                        className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono text-[#00d4ff] bg-[#00d4ff]/[0.08] border border-[#00d4ff]/20 hover:bg-[#00d4ff]/[0.15] transition-colors flex-shrink-0"
-                      >
-                        <Download size={12} />
-                        {exp.pdfLabel ?? 'Download'}
-                      </a>
-                    )}
-                  </div>
-                </GlassCard>
-              </motion.div>
-            )
-          })}
-        </motion.div>
+        <div className="space-y-6 pl-14">
+          {experiences.map((exp, i) => (
+            <TimelineItem key={exp.id} exp={exp} index={i} reduced={reduced} />
+          ))}
+        </div>
       </div>
     </section>
   )

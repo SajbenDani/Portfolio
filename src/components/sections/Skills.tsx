@@ -13,6 +13,7 @@ export default function Skills() {
   return (
     <section id="skills" className="py-24 px-4 md:px-6 max-w-6xl mx-auto">
       <SectionHeading
+        index="05"
         plain="Technical"
         accent="Skills"
         subtitle="Technologies and domains I work with"
@@ -53,7 +54,7 @@ export default function Skills() {
         >
           <GlassCard>
             <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#00d4ff]" />
+              <span className="w-2 h-2 rounded-full bg-copper-lite" />
               Expert
             </h3>
             <div className="divide-y divide-white/[0.05]">
@@ -73,7 +74,7 @@ export default function Skills() {
         >
           <GlassCard>
             <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-indigo-400" />
+              <span className="w-2 h-2 rounded-full bg-copper" />
               Proficient
             </h3>
             <div className="divide-y divide-white/[0.05]">
@@ -93,7 +94,7 @@ export default function Skills() {
         >
           <GlassCard>
             <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-violet-400" />
+              <span className="w-2 h-2 rounded-full bg-bronze" />
               Familiar
             </h3>
             <div className="divide-y divide-white/[0.05]">

@@ -2,31 +2,44 @@
 @import "tw-animate-css";
 
 @theme {
-  --color-background: #030303;
-  --color-foreground: #f5f5f5;
-  --color-primary: #00d4ff;
-  --color-primary-foreground: #030303;
-  --color-secondary: #1a1a1a;
-  --color-secondary-foreground: #f5f5f5;
-  --color-muted: #1a1a1a;
-  --color-muted-foreground: #999999;
-  --color-accent: #1f1f1f;
-  --color-accent-foreground: #f5f5f5;
+  /* ── Monochrome base (smooth near-black → warm off-white) ───────────── */
+  --color-background: #0b0b0c;
+  --color-foreground: #f4f1ec;
+
+  /* Surfaces */
+  --color-card: #121110;
+  --color-card-foreground: #f4f1ec;
+  --color-popover: #121110;
+  --color-popover-foreground: #f4f1ec;
+  --color-secondary: #1a1916;
+  --color-secondary-foreground: #f4f1ec;
+  --color-muted: #1a1916;
+  --color-muted-foreground: #a8a29b;
+  --color-accent: #211f1b;
+  --color-accent-foreground: #f4f1ec;
+
+  /* Copper accent system (single warm metallic) */
+  --color-primary: #c87e54;          /* copper — accents, links, orbits, CTAs */
+  --color-primary-foreground: #0b0b0c;
+  --color-copper: #c87e54;
+  --color-copper-lite: #e3a579;      /* lit copper — specular / glow top-stops */
+  --color-bronze: #8c5a3b;           /* deeper companion — pressed / gradients */
+
+  /* Functional only */
+  --color-available: #6ee7a8;        /* soft emerald — "available" live dot     */
   --color-destructive: #ef4444;
-  --color-destructive-foreground: #f5f5f5;
-  --color-border: #262626;
-  --color-input: #262626;
-  --color-ring: #00d4ff;
-  --color-card: #0a0a0a;
-  --color-card-foreground: #f5f5f5;
-  --color-popover: #0a0a0a;
-  --color-popover-foreground: #f5f5f5;
+  --color-destructive-foreground: #f4f1ec;
+
+  /* Lines & rings */
+  --color-border: rgba(244, 241, 236, 0.09);
+  --color-input: rgba(244, 241, 236, 0.12);
+  --color-ring: #c87e54;
 
   --font-display: 'Inter', sans-serif;
   --font-body: 'Source Sans 3', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 }
 
 /* Base reset */
@@ -39,41 +52,79 @@ html {
 }
 
 body {
-  background-color: #030303;
-  color: #f5f5f5;
+  background-color: #0b0b0c;
+  color: #f4f1ec;
   font-family: 'Source Sans 3', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.003em;
 }
 
-/* Glass morphism utility */
+::selection {
+  background: rgba(200, 126, 84, 0.3);
+  color: #fff;
+}
+
+/* ── Glass morphism — warm-neutral tint, copper hairline ──────────────── */
 .glass-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 252, 248, 0.035);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(244, 241, 236, 0.08);
+  box-shadow: inset 0 1px 0 0 rgba(255, 252, 248, 0.04);
 }
 
-.glow-cyan {
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+/* Copper edge-glow on hover (used by interactive cards) */
+.glow-copper {
+  box-shadow: 0 0 28px rgba(200, 126, 84, 0.22);
+}
+
+/* Metallic copper text gradient for headings/accents */
+.text-copper-gradient {
+  background-image: linear-gradient(105deg, #e3a579 0%, #c87e54 45%, #8c5a3b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 3D stage helpers (About card ring, helix fallbacks) */
+.scene-3d {
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Editorial section kicker (e.g. "01 — About") */
+.section-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #030303;
+  background: #0b0b0c;
 }
 ::-webkit-scrollbar-thumb {
-  background: #262626;
-  border-radius: 3px;
+  background: #2a2722;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00d4ff40;
+  background: rgba(200, 126, 84, 0.5);
 }
 
-/* For animated-shader-background (THREE.js aurora) */
+/* float keyframe retained for legacy shapes */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-10px); }
@@ -137,5 +188,8 @@ body {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
   }
 }

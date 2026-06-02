@@ -142,18 +142,18 @@ const CpuArchitecture = ({
         </mask>
 
         <radialGradient id="cpu-blue-grad" fx="1">
-          <stop offset="0%" stopColor="#00E8ED" />
-          <stop offset="50%" stopColor="#08F" />
+          <stop offset="0%" stopColor="#F0C49A" />
+          <stop offset="50%" stopColor="#E3A579" />
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
         <radialGradient id="cpu-yellow-grad" fx="1">
-          <stop offset="0%" stopColor="#FFD800" />
-          <stop offset="50%" stopColor="#FFD800" />
+          <stop offset="0%" stopColor="#F0C28A" />
+          <stop offset="50%" stopColor="#E3A579" />
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
         <radialGradient id="cpu-pinkish-grad" fx="1">
-          <stop offset="0%" stopColor="#830CD1" />
-          <stop offset="50%" stopColor="#FF008B" />
+          <stop offset="0%" stopColor="#8C5A3B" />
+          <stop offset="50%" stopColor="#C87E54" />
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
         <radialGradient id="cpu-white-grad" fx="1">
@@ -161,19 +161,19 @@ const CpuArchitecture = ({
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
         <radialGradient id="cpu-green-grad" fx="1">
-          <stop offset="0%" stopColor="#22c55e" />
+          <stop offset="0%" stopColor="#D8925E" />
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
         <radialGradient id="cpu-orange-grad" fx="1">
-          <stop offset="0%" stopColor="#f97316" />
+          <stop offset="0%" stopColor="#CD7F45" />
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
         <radialGradient id="cpu-cyan-grad" fx="1">
-          <stop offset="0%" stopColor="#06b6d4" />
+          <stop offset="0%" stopColor="#E3A579" />
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
         <radialGradient id="cpu-rose-grad" fx="1">
-          <stop offset="0%" stopColor="#f43f5e" />
+          <stop offset="0%" stopColor="#A86A43" />
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
 

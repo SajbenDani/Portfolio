@@ -60,7 +60,7 @@ export default function Navbar() {
           {/* Logo */}
           <motion.button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="text-[#00d4ff] font-bold text-xl font-mono tracking-widest select-none"
+            className="text-copper font-bold text-xl font-mono tracking-widest select-none"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -80,7 +80,7 @@ export default function Navbar() {
                   {activeSection === link.href.slice(1) && (
                     <motion.div
                       layoutId="nav-underline"
-                      className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#00d4ff] rounded-full"
+                      className="absolute bottom-0 left-2 right-2 h-0.5 bg-copper rounded-full"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react'
-import { ElegantShape } from '@/components/ui/shape-landing-hero'
 import { LiquidButton } from '@/components/ui/liquid-glass-button'
 
 const roles = [
@@ -28,54 +27,10 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#030303]"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Radial gradient backdrop */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.06] via-transparent to-rose-500/[0.06] blur-3xl" />
-
-      {/* Floating geometric shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <ElegantShape
-          delay={0.3}
-          width={600}
-          height={140}
-          rotate={12}
-          gradient="from-indigo-500/[0.15]"
-          className="left-[-10%] md:left-[-5%] top-[15%] md:top-[20%]"
-        />
-        <ElegantShape
-          delay={0.5}
-          width={500}
-          height={120}
-          rotate={-15}
-          gradient="from-rose-500/[0.15]"
-          className="right-[-5%] md:right-[0%] top-[70%] md:top-[75%]"
-        />
-        <ElegantShape
-          delay={0.4}
-          width={300}
-          height={80}
-          rotate={-8}
-          gradient="from-violet-500/[0.15]"
-          className="left-[5%] md:left-[10%] bottom-[5%] md:bottom-[10%]"
-        />
-        <ElegantShape
-          delay={0.6}
-          width={200}
-          height={60}
-          rotate={20}
-          gradient="from-cyan-500/[0.15]"
-          className="right-[15%] md:right-[20%] top-[10%] md:top-[15%]"
-        />
-        <ElegantShape
-          delay={0.7}
-          width={150}
-          height={40}
-          rotate={-25}
-          gradient="from-emerald-500/[0.15]"
-          className="left-[20%] md:left-[25%] top-[5%] md:top-[10%]"
-        />
-      </div>
+      {/* Soft copper key-light behind the name */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(200,126,84,0.10),transparent_55%)] pointer-events-none" />
 
       {/* Main content */}
       <div className="relative z-10 container mx-auto px-4 md:px-6 pt-20">
@@ -88,13 +43,13 @@ export default function Hero() {
             className="mb-8 flex justify-center"
           >
             <div className="relative w-24 h-24 rounded-full">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#00d4ff]/20 to-indigo-500/20 border-2 border-[#00d4ff]/30 flex items-center justify-center text-3xl font-bold text-[#00d4ff] font-mono shadow-[0_0_40px_rgba(0,212,255,0.2)]">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-copper/25 to-bronze/20 border border-copper/40 flex items-center justify-center text-3xl font-bold text-copper-lite font-mono shadow-[0_0_44px_rgba(200,126,84,0.22)]">
                 DS
               </div>
               {/* Pulsing ring */}
               <motion.div
-                className="absolute inset-0 rounded-full border border-[#00d4ff]/20"
-                animate={{ scale: [1, 1.2, 1], opacity: [0.6, 0, 0.6] }}
+                className="absolute inset-0 rounded-full border border-copper/25"
+                animate={{ scale: [1, 1.25, 1], opacity: [0.6, 0, 0.6] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
               />
             </div>
@@ -108,11 +63,11 @@ export default function Hero() {
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] mb-6"
           >
             <motion.div
-              className="w-2 h-2 rounded-full bg-emerald-400"
+              className="w-2 h-2 rounded-full bg-available"
               animate={{ scale: [1, 1.3, 1], opacity: [1, 0.6, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
-            <span className="text-sm text-white/50 tracking-wide">Dublin</span>
+            <span className="text-sm text-muted-foreground tracking-wide">Dublin</span>
           </motion.div>
 
           {/* Name */}
@@ -120,9 +75,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
-            className="text-5xl sm:text-7xl md:text-8xl font-bold mb-4 tracking-tight font-display"
+            className="text-5xl sm:text-7xl md:text-8xl font-bold mb-4 tracking-[-0.03em] font-display"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80">
+            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/75">
               Dániel Sajben
             </span>
           </motion.h1>
@@ -141,7 +96,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, y: -16, filter: 'blur(4px)' }}
                 transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                className="text-xl sm:text-2xl md:text-3xl bg-clip-text text-transparent bg-gradient-to-r from-[#00d4ff] via-indigo-300 to-violet-400 font-medium"
+                className="text-xl sm:text-2xl md:text-3xl text-copper-gradient font-medium"
               >
                 {roles[roleIdx]}
               </motion.span>
@@ -153,7 +108,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-base sm:text-lg text-white/40 mb-10 leading-relaxed font-light max-w-2xl mx-auto"
+            className="text-base sm:text-lg text-muted-foreground mb-10 leading-relaxed font-light max-w-2xl mx-auto"
           >
             MSc AI student at UCD Dublin, B.Sc. at BME with First Class Honours. Specialising in
             Deep Learning, Generative AI and AI for medicine.
@@ -168,13 +123,18 @@ export default function Hero() {
           >
             <LiquidButton
               size="xl"
+              className="text-copper-lite"
               onClick={() =>
                 document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
               }
             >
               View My Work
             </LiquidButton>
-            <LiquidButton size="xl" onClick={() => window.open('/SajbenDánielCV.pdf', '_blank')}>
+            <LiquidButton
+              size="xl"
+              className="text-foreground/70"
+              onClick={() => window.open('/SajbenDánielCV.pdf', '_blank')}
+            >
               Download CV
             </LiquidButton>
           </motion.div>
@@ -193,7 +153,7 @@ export default function Hero() {
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 aria-label={label}
-                className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-white/40 hover:text-[#00d4ff] transition-colors"
+                className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-white/40 hover:text-copper transition-colors"
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
@@ -205,12 +165,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-[#030303]/70 pointer-events-none" />
-
       {/* Scroll cue */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/20"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-copper/45"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
       >

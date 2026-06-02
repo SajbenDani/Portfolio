@@ -6,10 +6,10 @@ import GlassCard from '@/components/shared/GlassCard'
 import { LiquidButton } from '@/components/ui/liquid-glass-button'
 
 const statusStyle = {
-  'under review': 'text-amber-300 bg-amber-400/10 border-amber-400/20',
-  preprint: 'text-violet-300 bg-violet-400/10 border-violet-400/20',
-  published: 'text-emerald-300 bg-emerald-400/10 border-emerald-400/20',
-  unpublished: 'text-slate-300 bg-slate-400/10 border-slate-400/20',
+  'under review': 'text-copper-lite bg-copper/12 border-copper/30',
+  preprint: 'text-white/70 bg-white/[0.05] border-white/15',
+  published: 'text-available bg-[rgba(110,231,168,0.10)] border-[rgba(110,231,168,0.25)]',
+  unpublished: 'text-white/55 bg-white/[0.04] border-white/12',
 }
 
 const statusLabel = {
@@ -33,6 +33,7 @@ export default function Publications() {
   return (
     <section id="publications" className="py-24 px-4 md:px-6 max-w-6xl mx-auto">
       <SectionHeading
+        index="04"
         plain="Research"
         accent="Publications"
         subtitle="Peer-reviewed work and technical reports"
@@ -51,15 +52,22 @@ export default function Publications() {
               {/* Header row */}
               <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
                 <div className="flex items-start gap-3 flex-1 min-w-0">
-                  <div className="w-9 h-9 rounded-lg bg-[#00d4ff]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <BookOpen size={16} className="text-[#00d4ff]" />
+                  <div className="w-9 h-9 rounded-lg bg-copper/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <BookOpen size={16} className="text-copper" />
                   </div>
                   <div className="min-w-0">
                     <h3 className="font-semibold text-white text-base leading-snug mb-1">
                       {pub.title}
                     </h3>
-                    <p className="text-sm text-white/40 font-mono">
-                      {pub.venue} · {pub.year}
+                    <p className="text-sm text-white/40 font-mono flex flex-wrap items-center gap-x-2 gap-y-1">
+                      <span>
+                        {pub.venue} · {pub.year}
+                      </span>
+                      {pub.collab && (
+                        <span className="px-2 py-0.5 rounded text-[0.7rem] text-copper/80 bg-copper/[0.07] border border-copper/15">
+                          {pub.collab}
+                        </span>
+                      )}
                     </p>
                   </div>
                 </div>
@@ -90,17 +98,14 @@ export default function Publications() {
                   {pub.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-0.5 rounded text-xs font-mono text-[#00d4ff]/70 bg-[#00d4ff]/[0.06] border border-[#00d4ff]/10"
+                      className="px-2 py-0.5 rounded text-xs font-mono text-copper/80 bg-copper/[0.07] border border-copper/15"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
                 {pub.pdf && (
-                  <LiquidButton
-                    size="sm"
-                    onClick={() => window.open(pub.pdf, '_blank')}
-                  >
+                  <LiquidButton size="sm" className="text-copper-lite" onClick={() => window.open(pub.pdf, '_blank')}>
                     <ExternalLink size={14} className="mr-1.5" />
                     Read Paper
                   </LiquidButton>

@@ -11,7 +11,7 @@ export default function GlassCard({ className, children, hover = true }: GlassCa
   return (
     <motion.div
       className={cn('glass-card rounded-xl p-6', className)}
-      whileHover={hover ? { borderColor: 'rgba(0,212,255,0.25)' } : undefined}
+      whileHover={hover ? { borderColor: 'rgba(200,126,84,0.32)' } : undefined}
       transition={{ duration: 0.2 }}
     >
       {children}

@@ -6,6 +6,8 @@ export interface Publication {
   status: 'published' | 'under review' | 'preprint' | 'unpublished'
   description: string
   blurDescription?: boolean
+  /** Optional collaborator chip, e.g. "Ericsson × BME". */
+  collab?: string
   pdf?: string
   tags: string[]
 }
@@ -21,6 +23,18 @@ export const publications: Publication[] = [
       'Novel approach to multi-site fMRI data harmonisation, enabling cross-scanner compatibility for large-scale neuroimaging studies.',
     blurDescription: true,
     tags: ['fMRI', 'Neuroimaging', 'Harmonisation', 'NeurIPS'],
+  },
+  {
+    id: 'telecom-camad',
+    title: 'Agentic Semantic Validation of Telecommunications Configurations',
+    venue: 'IEEE CAMAD 2026',
+    year: 2026,
+    status: 'under review',
+    description:
+      'Agentic pipeline for semantic validation of telecommunications configuration files using LLM reasoning with tool-use to detect logical inconsistencies and policy violations across large-scale network deployments.',
+    blurDescription: true,
+    collab: 'Ericsson × BME',
+    tags: ['LLM', 'AI Agents', 'Ericsson', 'BME'],
   },
   {
     id: 'gnn-llm-survey',
