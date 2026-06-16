@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion'
 import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react'
 import { LiquidButton } from '@/components/ui/liquid-glass-button'
+import Magnetic from '@/components/shared/Magnetic'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { asset } from '@/lib/utils'
 
 const roles = [
@@ -17,8 +20,37 @@ const socialLinks = [
   { icon: Mail, href: 'mailto:sajben.dani@gmail.com', label: 'Email' },
 ]
 
+const SPOT_SIZE = 560
+
 export default function Hero() {
   const [roleIdx, setRoleIdx] = useState(0)
+  const reduced = useReducedMotion()
+  const finePointer = useMediaQuery('(pointer: fine)')
+  const spotlightOn = finePointer && !reduced
+
+  // Pointer-following copper spotlight — motion values only, no re-renders.
+  const rawX = useMotionValue(-SPOT_SIZE)
+  const rawY = useMotionValue(-SPOT_SIZE)
+  const spotX = useSpring(rawX, { stiffness: 60, damping: 20 })
+  const spotY = useSpring(rawY, { stiffness: 60, damping: 20 })
+  const hasMoved = useRef(false)
+
+  const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (!spotlightOn) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    const px = e.clientX - rect.left - SPOT_SIZE / 2
+    const py = e.clientY - rect.top - SPOT_SIZE / 2
+    if (!hasMoved.current) {
+      hasMoved.current = true
+      rawX.jump(px)
+      rawY.jump(py)
+      spotX.jump(px)
+      spotY.jump(py)
+      return
+    }
+    rawX.set(px)
+    rawY.set(py)
+  }
 
   useEffect(() => {
     const t = setInterval(() => setRoleIdx((i) => (i + 1) % roles.length), 3000)
@@ -29,9 +61,25 @@ export default function Hero() {
     <section
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      onMouseMove={onMouseMove}
     >
       {/* Soft copper key-light behind the name */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(200,126,84,0.10),transparent_55%)] pointer-events-none" />
+
+      {/* Pointer-following spotlight */}
+      {spotlightOn && (
+        <motion.div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-0 left-0 rounded-full"
+          style={{
+            x: spotX,
+            y: spotY,
+            width: SPOT_SIZE,
+            height: SPOT_SIZE,
+            background: 'radial-gradient(circle, rgba(200,126,84,0.07), transparent 60%)',
+          }}
+        />
+      )}
 
       {/* Main content */}
       <div className="relative z-10 container mx-auto px-4 md:px-6 pt-20">
@@ -43,8 +91,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2, ease: [0.23, 0.86, 0.39, 0.96] }}
             className="mb-8 flex justify-center"
           >
-            <div className="relative w-24 h-24 rounded-full">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-copper/25 to-bronze/20 border border-copper/40 flex items-center justify-center text-3xl font-bold text-copper-lite font-mono shadow-[0_0_44px_rgba(200,126,84,0.22)]">
+            <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-copper/25 to-bronze/20 border border-copper/40 flex items-center justify-center text-2xl sm:text-3xl font-medium text-copper-lite font-mono shadow-[0_0_44px_rgba(200,126,84,0.22)]">
                 DS
               </div>
               {/* Pulsing ring */}
@@ -76,7 +124,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
-            className="text-5xl sm:text-7xl md:text-8xl font-bold mb-4 tracking-[-0.03em] font-display"
+            className="text-5xl sm:text-7xl md:text-8xl font-bold mb-4 tracking-display font-display"
           >
             <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/75">
               Dániel Sajben
@@ -109,7 +157,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-base sm:text-lg text-muted-foreground mb-10 leading-relaxed font-light max-w-2xl mx-auto"
+            className="text-base sm:text-lg text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto"
           >
             MSc AI student at UCD Dublin, B.Sc. at BME with First Class Honours. Specialising in
             Deep Learning, Generative AI and AI for medicine.
@@ -122,22 +170,26 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.7 }}
             className="flex flex-wrap items-center justify-center gap-4 mb-12"
           >
-            <LiquidButton
-              size="xl"
-              className="text-copper-lite"
-              onClick={() =>
-                document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
-              }
-            >
-              View My Work
-            </LiquidButton>
-            <LiquidButton
-              size="xl"
-              className="text-foreground/70"
-              onClick={() => window.open(asset('/SajbenDánielCV.pdf'), '_blank')}
-            >
-              Download CV
-            </LiquidButton>
+            <Magnetic disabled={!spotlightOn}>
+              <LiquidButton
+                size="xl"
+                className="text-copper-lite"
+                onClick={() =>
+                  document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
+                }
+              >
+                View My Work
+              </LiquidButton>
+            </Magnetic>
+            <Magnetic disabled={!spotlightOn}>
+              <LiquidButton
+                size="xl"
+                className="text-foreground/70"
+                onClick={() => window.open(asset('/SajbenDánielCV.pdf'), '_blank')}
+              >
+                Download CV
+              </LiquidButton>
+            </Magnetic>
           </motion.div>
 
           {/* Social links */}
@@ -154,7 +206,7 @@ export default function Hero() {
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 aria-label={label}
-                className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-white/40 hover:text-copper transition-colors"
+                className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-content-tertiary hover:text-copper transition-colors"
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}

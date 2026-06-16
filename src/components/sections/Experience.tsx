@@ -34,9 +34,9 @@ function TimelineItem({
   return (
     <div className="relative" style={{ perspective: '900px' }}>
       {/* Spine node */}
-      <div className="absolute -left-9 top-5">
+      <div className="absolute -left-8 md:-left-9 top-5">
         <motion.div
-          className={`w-10 h-10 rounded-full flex items-center justify-center ${colorClass}`}
+          className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center ${colorClass}`}
           initial={{ scale: 0 }}
           whileInView={{
             scale: 1,
@@ -68,24 +68,24 @@ function TimelineItem({
         transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
         style={{ transformPerspective: 900, transformOrigin: 'left center' }}
       >
-        <GlassCard className="p-5">
+        <GlassCard lift className="p-5">
           <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
             <div>
-              <h3 className="font-semibold text-white text-base">{exp.role}</h3>
+              <h3 className="font-semibold text-content text-base">{exp.role}</h3>
               <p className="text-copper text-sm">{exp.org}</p>
             </div>
-            <div className="text-right text-xs text-white/40">
+            <div className="text-right text-xs text-content-tertiary">
               <p className="font-mono">{exp.period}</p>
               <p>{exp.location}</p>
             </div>
           </div>
-          <p className="text-sm text-white/55 leading-relaxed mb-3">{exp.description}</p>
+          <p className="text-sm text-content-tertiary leading-relaxed mb-3">{exp.description}</p>
           <div className="flex flex-wrap items-center gap-2">
             <div className="flex flex-wrap gap-1.5 flex-1">
               {exp.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-0.5 rounded text-xs font-mono text-white/50 bg-white/[0.04] border border-white/[0.07]"
+                  className="px-2 py-0.5 rounded text-xs font-mono text-content-tertiary bg-white/[0.04] border border-white/[0.07]"
                 >
                   {tag}
                 </span>
@@ -128,14 +128,14 @@ export default function Experience() {
 
       <div ref={ref} className="relative max-w-3xl mx-auto">
         {/* Spine track */}
-        <div className="absolute left-5 top-0 bottom-0 w-px bg-white/[0.08]" />
+        <div className="absolute left-4 md:left-5 top-0 bottom-0 w-px bg-white/[0.08]" />
         {/* Spine fill — draws in with scroll (echo of the star-pole) */}
         <motion.div
-          className="absolute left-5 top-0 bottom-0 w-px origin-top bg-gradient-to-b from-copper-lite via-copper to-bronze shadow-[0_0_10px_rgba(200,126,84,0.5)]"
+          className="absolute left-4 md:left-5 top-0 bottom-0 w-px origin-top bg-gradient-to-b from-copper-lite via-copper to-bronze shadow-[0_0_10px_rgba(200,126,84,0.5)]"
           style={{ scaleY: reduced ? 1 : fill }}
         />
 
-        <div className="space-y-6 pl-14">
+        <div className="space-y-6 pl-11 md:pl-14">
           {experiences.map((exp, i) => (
             <TimelineItem key={exp.id} exp={exp} index={i} reduced={reduced} />
           ))}

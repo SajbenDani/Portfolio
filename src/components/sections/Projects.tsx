@@ -7,8 +7,8 @@ import VideoModal from '@/components/shared/VideoModal'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
-// Lazy-load the WebGL helix (three.js) — only desktop, non-reduced-motion users pull it.
-const ProjectHelix = lazy(() => import('@/components/sections/ProjectHelix'))
+// Lazy-load the cinematic showcase — only desktop, non-reduced-motion users pull it.
+const ProjectShowcase = lazy(() => import('@/components/sections/ProjectShowcase'))
 
 const filters: { label: string; value: FilterCategory }[] = [
   { label: 'All', value: 'all' },
@@ -43,7 +43,7 @@ function ProjectsGrid() {
             key={f.value}
             onClick={() => setActive(f.value)}
             className="relative px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-            style={{ color: active === f.value ? '#0b0b0c' : 'rgba(244,241,236,0.55)' }}
+            style={{ color: active === f.value ? '#0b0b0c' : 'var(--color-content-tertiary)' }}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
           >
@@ -93,7 +93,7 @@ export default function Projects() {
   if (reduced || !isDesktop) return <ProjectsGrid />
   return (
     <Suspense fallback={<div id="projects" className="min-h-screen" />}>
-      <ProjectHelix />
+      <ProjectShowcase />
     </Suspense>
   )
 }

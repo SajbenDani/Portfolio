@@ -38,7 +38,7 @@ export default function SectionHeading({
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true }}
-        className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.02em] mb-4 font-display"
+        className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-heading mb-4 font-display"
       >
         {plain} <span className="text-copper-gradient">{accent}</span>
       </motion.h2>

@@ -11,6 +11,9 @@ outline.md
 # Root-level assets folder (old files; served assets live in public/)
 assets/
 
+# Local staging for source documents (served copies live in public/)
+uploads/
+
 # Build output
 dist/
 

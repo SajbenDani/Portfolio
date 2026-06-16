@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @theme {
   /* ── Monochrome base (smooth near-black → warm off-white) ───────────── */
@@ -35,6 +34,17 @@
   --color-input: rgba(244, 241, 236, 0.12);
   --color-ring: #c87e54;
 
+  /* ── Text hierarchy — 4 levels, use instead of ad-hoc white/N opacities ── */
+  --color-content: #f4f1ec;                             /* L1 — headings / emphasis */
+  --color-content-secondary: rgba(244, 241, 236, 0.76); /* L2 — body copy */
+  --color-content-tertiary: rgba(244, 241, 236, 0.55);  /* L3 — metadata / captions */
+  --color-content-faint: rgba(244, 241, 236, 0.38);     /* L4 — decorative only */
+  --color-copper-text: #d89469;  /* copper tuned for small text — keeps AA on glass */
+
+  /* Optical tracking scale */
+  --tracking-display: -0.03em;   /* hero-scale display type */
+  --tracking-heading: -0.022em;  /* section headings */
+
   --font-display: 'Inter', sans-serif;
   --font-body: 'Source Sans 3', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -63,6 +73,31 @@ body {
 ::selection {
   background: rgba(200, 126, 84, 0.3);
   color: #fff;
+}
+
+/* Accessible focus — copper ring; :where() keeps specificity at zero */
+:where(a, button, [tabindex='0']):focus-visible {
+  outline: 2px solid rgba(200, 126, 84, 0.9);
+  outline-offset: 2px;
+}
+
+/* Skip-to-content link — off-screen until keyboard focus */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--color-copper);
+  color: #0b0b0c;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
 }
 
 /* ── Glass morphism — warm-neutral tint, copper hairline ──────────────── */
@@ -122,12 +157,6 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(200, 126, 84, 0.5);
-}
-
-/* float keyframe retained for legacy shapes */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-10px); }
 }
 
 /* CPU Architecture SVG animation paths */

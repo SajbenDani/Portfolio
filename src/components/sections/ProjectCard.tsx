@@ -48,9 +48,12 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
     <motion.div
       className={`glass-card rounded-xl overflow-hidden group ${project.isPrivate ? 'cursor-default' : 'cursor-pointer'} ${className ?? ''}`}
       whileHover={
-        flat || project.isPrivate
+        project.isPrivate
           ? undefined
-          : { y: -6, boxShadow: '0 20px 40px rgba(200,126,84,0.14)', borderColor: 'rgba(200,126,84,0.3)' }
+          : flat
+            ? // Color-only feedback inside the helix — transforms would fight the CSS-3D stage.
+              { borderColor: 'rgba(200,126,84,0.3)' }
+            : { y: -6, boxShadow: '0 20px 40px rgba(200,126,84,0.14)', borderColor: 'rgba(200,126,84,0.3)' }
       }
       transition={{ duration: 0.25 }}
       onClick={handleClick}
@@ -67,8 +70,8 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
         {/* Private overlay */}
         {project.isPrivate && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-black/40">
-            <Lock size={24} className="text-white/60" />
-            <span className="text-xs font-mono text-white/50 tracking-widest uppercase">
+            <Lock size={24} className="text-content-tertiary" />
+            <span className="text-xs font-mono text-content-tertiary tracking-widest uppercase">
               Not Yet Public
             </span>
           </div>
@@ -76,7 +79,7 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
 
         {/* Category badge */}
         {!project.isPrivate && (
-          <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-mono bg-black/50 backdrop-blur-sm border border-white/10 text-white/70">
+          <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-mono bg-black/50 backdrop-blur-sm border border-white/10 text-content-secondary">
             {categoryLabel[project.category] ?? project.category}
           </span>
         )}
@@ -102,9 +105,9 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
       {/* Content */}
       <div className="p-5">
         <div className="flex items-start gap-2 mb-2">
-          <h3 className="font-semibold text-white text-lg flex-1">{project.title}</h3>
+          <h3 className="font-semibold text-content text-lg flex-1">{project.title}</h3>
           {project.isPrivate && (
-            <span className="flex items-center gap-1 px-2 py-0.5 rounded text-xs font-mono text-white/40 bg-white/[0.04] border border-white/[0.07] flex-shrink-0">
+            <span className="flex items-center gap-1 px-2 py-0.5 rounded text-xs font-mono text-content-tertiary bg-white/[0.04] border border-white/[0.07] flex-shrink-0">
               <Lock size={10} />
               Ericsson × BME
             </span>
@@ -113,7 +116,7 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
 
         {project.isPrivate ? (
           <p
-            className="text-sm text-white/55 leading-relaxed mb-4 select-none"
+            className="text-sm text-content-tertiary leading-relaxed mb-4 select-none"
             style={{ filter: 'blur(5px)', userSelect: 'none' }}
           >
             Agentic pipeline for semantic validation of telecommunications configuration files
@@ -121,7 +124,7 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
             violations — Ericsson × BME student research collaboration.
           </p>
         ) : (
-          <p className="text-sm text-white/55 leading-relaxed mb-4 line-clamp-3">
+          <p className="text-sm text-content-tertiary leading-relaxed mb-4 line-clamp-3">
             {project.description}
           </p>
         )}
@@ -134,7 +137,7 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="px-2 py-0.5 rounded text-xs font-mono text-copper/80 bg-copper/[0.07] border border-copper/15"
+              className="px-2 py-0.5 rounded text-xs font-mono text-copper-text bg-copper/[0.07] border border-copper/15"
             >
               {tag}
             </span>
@@ -147,7 +150,7 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
             {project.video && (
               <button
                 onClick={() => onVideo(project.video!)}
-                className="flex items-center gap-1.5 text-xs text-copper/85 hover:text-copper-lite transition-colors"
+                className="flex items-center gap-1.5 text-xs text-copper-text hover:text-copper-lite transition-colors"
               >
                 <Play size={14} fill="currentColor" />
                 Watch Demo
@@ -158,7 +161,7 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs text-white/50 hover:text-white transition-colors"
+                className="flex items-center gap-1.5 text-xs text-content-tertiary hover:text-content transition-colors"
               >
                 <Github size={14} />
                 Source
@@ -170,7 +173,7 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="flex items-center gap-1.5 text-xs text-white/50 hover:text-white transition-colors"
+                className="flex items-center gap-1.5 text-xs text-content-tertiary hover:text-content transition-colors"
               >
                 <Github size={14} />
                 Source
@@ -181,7 +184,7 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs text-white/50 hover:text-copper transition-colors"
+                className="flex items-center gap-1.5 text-xs text-content-tertiary hover:text-copper transition-colors"
               >
                 <ExternalLink size={14} />
                 Live Demo
@@ -192,7 +195,7 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
                 href={asset(project.pdf)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs text-white/50 hover:text-copper transition-colors"
+                className="flex items-center gap-1.5 text-xs text-content-tertiary hover:text-copper transition-colors"
               >
                 <BookOpen size={14} />
                 Read Paper
@@ -203,7 +206,7 @@ export default function ProjectCard({ project, onVideo, flat = false, className 
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs text-white/50 hover:text-copper transition-colors"
+                className="flex items-center gap-1.5 text-xs text-content-tertiary hover:text-copper transition-colors"
               >
                 <ExternalLink size={14} />
                 Competition

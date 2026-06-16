@@ -29,18 +29,18 @@ const cardFaces: { label: string; content: ReactNode }[] = [
           <GraduationCap size={20} className="text-copper-lite" />
         </div>
         <div>
-          <h3 className="font-semibold text-white mb-2">Education</h3>
-          <div className="space-y-2 text-[13px] text-white/60 leading-snug">
+          <h3 className="font-semibold text-content mb-2">Education</h3>
+          <div className="space-y-2 text-[13px] text-content-tertiary leading-snug">
             <div>
-              <p className="text-white/85 font-medium">MSc Advanced Artificial Intelligence</p>
+              <p className="text-content font-medium">MSc Advanced Artificial Intelligence</p>
               <p>University College Dublin (#118 globally) · 2026–2027</p>
             </div>
             <div>
-              <p className="text-white/85 font-medium">B.Sc. Computer Science Engineering</p>
+              <p className="text-content font-medium">B.Sc. Computer Science Engineering</p>
               <p>Budapest Univ. of Technology · GPA 4.65/5.00 · First Class Honours</p>
             </div>
             <div>
-              <p className="text-white/85 font-medium">Exchange — AI &amp; Deep Learning</p>
+              <p className="text-content font-medium">Exchange — AI &amp; Deep Learning</p>
               <p>Technical University of Munich (TUM) · GPA 1.3/5.0</p>
             </div>
           </div>
@@ -56,14 +56,14 @@ const cardFaces: { label: string; content: ReactNode }[] = [
           <Briefcase size={20} className="text-copper" />
         </div>
         <div>
-          <h3 className="font-semibold text-white mb-2">Current Focus</h3>
-          <div className="space-y-2 text-[13px] text-white/60 leading-snug">
+          <h3 className="font-semibold text-content mb-2">Current Focus</h3>
+          <div className="space-y-2 text-[13px] text-content-tertiary leading-snug">
             <div>
-              <p className="text-white/85 font-medium">Data Science &amp; AI Engineer Intern</p>
+              <p className="text-content font-medium">Data Science &amp; AI Engineer Intern</p>
               <p>PTC Hungary · Python · LLM · AI Agents</p>
             </div>
             <div>
-              <p className="text-white/85 font-medium">Thesis Research</p>
+              <p className="text-content font-medium">Thesis Research</p>
               <p>fMRI Harmonisation · NeurIPS 2026 submission</p>
             </div>
           </div>
@@ -79,11 +79,11 @@ const cardFaces: { label: string; content: ReactNode }[] = [
           <MapPin size={20} className="text-copper-lite" />
         </div>
         <div>
-          <h3 className="font-semibold text-white mb-2">Location &amp; Availability</h3>
-          <p className="text-[13px] text-white/60">Based in Dublin, Ireland</p>
-          <p className="text-[13px] text-white/60 mt-1 leading-snug">
+          <h3 className="font-semibold text-content mb-2">Location &amp; Availability</h3>
+          <p className="text-[13px] text-content-tertiary">Based in Dublin, Ireland</p>
+          <p className="text-[13px] text-content-tertiary mt-1 leading-snug">
             EU citizen · Open to roles in{' '}
-            <span className="text-white/85">Dublin · London · Munich · Budapest · Remote</span>
+            <span className="text-content">Dublin · London · Munich · Budapest · Remote</span>
           </p>
         </div>
       </div>
@@ -166,7 +166,7 @@ function AboutRing() {
         <button
           onClick={prev}
           aria-label="Previous card"
-          className="w-9 h-9 rounded-full glass-card flex items-center justify-center text-white/50 hover:text-copper transition-colors"
+          className="w-9 h-9 rounded-full glass-card flex items-center justify-center text-content-tertiary hover:text-copper transition-colors"
         >
           <ChevronLeft size={18} />
         </button>
@@ -185,12 +185,12 @@ function AboutRing() {
         <button
           onClick={next}
           aria-label="Next card"
-          className="w-9 h-9 rounded-full glass-card flex items-center justify-center text-white/50 hover:text-copper transition-colors"
+          className="w-9 h-9 rounded-full glass-card flex items-center justify-center text-content-tertiary hover:text-copper transition-colors"
         >
           <ChevronRight size={18} />
         </button>
       </div>
-      <p className="text-xs text-white/25 mt-3 font-mono tracking-wide">drag to spin · flick to throw</p>
+      <p className="text-xs text-content-faint mt-3 font-mono tracking-wide">drag to spin · flick to throw</p>
     </div>
   )
 }
@@ -227,25 +227,25 @@ export default function About() {
           viewport={{ once: true }}
           className="space-y-5"
         >
-          <p className="text-white/70 leading-relaxed text-lg">
+          <p className="text-content-secondary leading-relaxed text-lg">
             I'm a Computer Science Engineering graduate from{' '}
-            <span className="text-white/90 font-medium">
+            <span className="text-content font-medium">
               Budapest University of Technology (First Class Honours)
             </span>
             , currently pursuing an{' '}
-            <span className="text-white/90 font-medium">
+            <span className="text-content font-medium">
               MSc in Advanced AI at University College Dublin
             </span>
             .
           </p>
-          <p className="text-white/70 leading-relaxed">
+          <p className="text-content-secondary leading-relaxed">
             Currently working as a{' '}
             <span className="text-copper">Data Science &amp; AI Engineer at PTC Hungary</span>,
             building agentic pipelines. Simultaneously conducting thesis research on fMRI
             harmonisation — NeurIPS 2026 submission. Also active in other research in the telcom
             domain.
           </p>
-          <p className="text-white/70 leading-relaxed">
+          <p className="text-content-secondary leading-relaxed">
             My work sits at the intersection of cutting-edge AI research and practical engineering.
             I'm passionate about generative models, computer vision, and intelligent agents that
             operate in real-world environments.
@@ -261,7 +261,7 @@ export default function About() {
                 transition={{ delay: i * 0.04, duration: 0.3 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.05, backgroundColor: 'rgba(200,126,84,0.15)' }}
-                className="px-3 py-1 rounded-full text-xs font-mono text-white/60 border border-white/[0.08] bg-white/[0.03] cursor-default transition-colors"
+                className="px-3 py-1 rounded-full text-xs font-mono text-content-tertiary border border-white/[0.08] bg-white/[0.03] cursor-default transition-colors"
               >
                 {tag}
               </motion.span>

@@ -1,6 +1,9 @@
 import { lazy, Suspense } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import SectionDivider from '@/components/shared/SectionDivider'
+import GrainOverlay from '@/components/shared/GrainOverlay'
+import ScrollToTop from '@/components/shared/ScrollToTop'
+import StatStrip from '@/components/shared/StatStrip'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Hero from '@/components/sections/Hero'
@@ -20,12 +23,18 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-background text-foreground font-body overflow-x-clip">
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+
       {/* Ambient 3D starfield — fixed, behind everything */}
       <Suspense fallback={null}>
         <AmbientScene className="fixed inset-0 z-0 opacity-70 pointer-events-none" />
       </Suspense>
       {/* Warm copper vignette to anchor the top of the page */}
       <div className="fixed inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_0%,rgba(200,126,84,0.06),transparent_55%)]" />
+      {/* Film-grain texture above content, below progress bar */}
+      <GrainOverlay />
 
       {/* Scroll progress bar */}
       <motion.div
@@ -35,18 +44,21 @@ export default function App() {
 
       <div className="relative z-10">
         <Navbar />
-        <main>
+        <main id="main" tabIndex={-1}>
           <Hero />
           <SectionDivider />
+          <StatStrip />
           <About />
           <Projects />
           <SectionDivider flip />
           <Experience />
           <Publications />
           <Skills />
+          <SectionDivider />
           <Contact />
         </main>
         <Footer />
+        <ScrollToTop />
       </div>
     </div>
   )
