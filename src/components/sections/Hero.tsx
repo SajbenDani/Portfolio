@@ -63,8 +63,8 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       onMouseMove={onMouseMove}
     >
-      {/* Soft copper key-light behind the name */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(200,126,84,0.10),transparent_55%)] pointer-events-none" />
+      {/* Clean ambient glow behind the name */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(255,255,255,0.05),transparent_55%)] pointer-events-none" />
 
       {/* Pointer-following spotlight */}
       {spotlightOn && (
@@ -76,7 +76,7 @@ export default function Hero() {
             y: spotY,
             width: SPOT_SIZE,
             height: SPOT_SIZE,
-            background: 'radial-gradient(circle, rgba(200,126,84,0.07), transparent 60%)',
+            background: 'radial-gradient(circle, rgba(255,255,255,0.03), transparent 60%)',
           }}
         />
       )}
@@ -92,12 +92,12 @@ export default function Hero() {
             className="mb-8 flex justify-center"
           >
             <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-copper/25 to-bronze/20 border border-copper/40 flex items-center justify-center text-2xl sm:text-3xl font-medium text-copper-lite font-mono shadow-[0_0_44px_rgba(200,126,84,0.22)]">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-white/5 border border-white/20 flex items-center justify-center text-2xl sm:text-3xl font-medium text-white font-mono shadow-[0_0_44px_rgba(255,255,255,0.1)] backdrop-blur-md">
                 DS
               </div>
               {/* Pulsing ring */}
               <motion.div
-                className="absolute inset-0 rounded-full border border-copper/25"
+                className="absolute inset-0 rounded-full border border-white/10"
                 animate={{ scale: [1, 1.25, 1], opacity: [0.6, 0, 0.6] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
               />
@@ -145,7 +145,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, y: -16, filter: 'blur(4px)' }}
                 transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                className="text-xl sm:text-2xl md:text-3xl text-copper-gradient font-medium"
+                className="text-xl sm:text-2xl md:text-3xl text-white/90 font-medium tracking-wide"
               >
                 {roles[roleIdx]}
               </motion.span>
@@ -206,7 +206,7 @@ export default function Hero() {
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 aria-label={label}
-                className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-content-tertiary hover:text-copper transition-colors"
+                className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-content-tertiary hover:text-white transition-colors"
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
@@ -220,7 +220,7 @@ export default function Hero() {
 
       {/* Scroll cue */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-copper/45"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
       >

@@ -93,7 +93,7 @@ function ScreenLayer({
 function LinksRow({ project, onVideo }: { project: ProjectT; onVideo: (src: string) => void }) {
   const chip =
     'inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-mono border transition-colors'
-  const primary = `${chip} text-copper-lite bg-copper/[0.12] border-copper/30 hover:bg-copper/[0.2]`
+  const primary = `${chip} text-black bg-white border-white hover:bg-white/90 shadow-sm`
   const ghost = `${chip} text-content-tertiary bg-white/[0.03] border-white/[0.08] hover:text-content hover:border-white/[0.16]`
 
   return (
@@ -182,7 +182,7 @@ function CopyLayer({
       </motion.span>
 
       <motion.div style={{ x: titleX }} className="relative">
-        <p className="font-mono text-xs tracking-[0.25em] uppercase text-copper-text mb-3">
+        <p className="font-mono text-xs tracking-[0.25em] uppercase text-white/80 mb-3">
           {categoryLabel[project.category] ?? project.category}
           {project.isPrivate && ' · Ericsson × BME'}
         </p>
@@ -207,7 +207,7 @@ function CopyLayer({
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="px-2 py-0.5 rounded text-xs font-mono text-copper-text bg-copper/[0.07] border border-copper/15"
+              className="px-2 py-0.5 rounded text-xs font-mono text-white/80 bg-white/[0.07] border border-white/15"
             >
               {tag}
             </span>
@@ -301,8 +301,8 @@ export default function ProjectShowcase() {
           style={{ opacity: headingOpacity }}
         >
           <div className="section-kicker mb-3 flex items-center justify-center gap-3">
-            <span className="text-copper">02</span>
-            <span className="h-px w-8 bg-gradient-to-r from-copper/60 to-transparent" />
+            <span className="text-white">02</span>
+            <span className="h-px w-8 bg-gradient-to-r from-white/60 to-transparent" />
             <span>Featured</span>
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-heading font-display">
@@ -353,7 +353,7 @@ export default function ProjectShowcase() {
                       {/* window chrome */}
                       <div className="absolute top-0 left-0 right-0 h-7 z-20 flex items-center gap-1.5 px-3 bg-black/50 border-b border-white/[0.06]">
                         <span className="w-2 h-2 rounded-full bg-white/15" />
-                        <span className="w-2 h-2 rounded-full bg-copper/40" />
+                        <span className="w-2 h-2 rounded-full bg-white/30" />
                         <span className="w-2 h-2 rounded-full bg-white/15" />
                         <span className="ml-2 font-mono text-[10px] text-content-faint truncate">
                           ~/projects/{activeProject.id}
@@ -376,11 +376,11 @@ export default function ProjectShowcase() {
 
                     {/* Back: lid cover with the monogram */}
                     <div
-                      className="absolute inset-0 rounded-[14px] border border-white/[0.1] bg-gradient-to-br from-[#1b1916] via-[#121110] to-[#0c0b0a] backface-hidden flex items-center justify-center"
+                      className="absolute inset-0 rounded-[14px] border border-white/[0.15] bg-gradient-to-br from-[#333336] via-[#2c2c2e] to-[#1c1c1e] backface-hidden flex items-center justify-center shadow-inner"
                       style={{ transform: 'rotateY(180deg)' }}
                     >
-                      <div className="absolute inset-0 rounded-[14px] bg-[radial-gradient(60%_60%_at_50%_45%,rgba(200,126,84,0.10),transparent_70%)]" />
-                      <span className="font-mono font-medium text-3xl tracking-[0.3em] text-copper-gradient translate-x-[0.15em]">
+                      <div className="absolute inset-0 rounded-[14px] bg-[radial-gradient(60%_60%_at_50%_45%,rgba(255,255,255,0.06),transparent_70%)]" />
+                      <span className="font-mono font-medium text-3xl tracking-[0.3em] text-white/90 translate-x-[0.15em]" style={{ textShadow: '0 0 10px rgba(255,255,255,0.3)' }}>
                         DS
                       </span>
                     </div>
@@ -388,19 +388,19 @@ export default function ProjectShowcase() {
 
                   {/* Hinge glow */}
                   <motion.div
-                    className="h-[2px] w-[88%] mx-auto bg-gradient-to-r from-transparent via-copper/70 to-transparent"
+                    className="h-[2px] w-[88%] mx-auto bg-gradient-to-r from-transparent via-white/40 to-transparent"
                     style={{ opacity: hingeGlow }}
                   />
 
                   {/* Base */}
-                  <div className="relative h-[16px] w-[104%] -ml-[2%] rounded-b-xl rounded-t-[3px] bg-gradient-to-b from-[#23201c] via-[#16140f] to-[#0c0b0a] border border-t-0 border-white/[0.07]">
-                    <div className="absolute left-1/2 -translate-x-1/2 top-0 h-[5px] w-24 rounded-b-md bg-black/60" />
+                  <div className="relative h-[16px] w-[104%] -ml-[2%] rounded-b-xl rounded-t-[3px] bg-gradient-to-b from-[#424245] via-[#2d2d2f] to-[#1d1d1f] border border-t-0 border-white/[0.15] shadow-xl">
+                    <div className="absolute left-1/2 -translate-x-1/2 top-0 h-[5px] w-24 rounded-b-md bg-black/40" />
                   </div>
                 </motion.div>
 
                 {/* Floor reflection */}
                 <motion.div
-                  className="mx-auto mt-8 h-10 w-[70%] rounded-[50%] bg-copper blur-3xl"
+                  className="mx-auto mt-8 h-10 w-[70%] rounded-[50%] bg-white/60 blur-[40px]"
                   style={{ opacity: floorGlow }}
                 />
               </div>
@@ -434,7 +434,7 @@ export default function ProjectShowcase() {
               <span
                 className={`text-[10px] font-mono transition-opacity ${
                   active === i
-                    ? 'text-copper opacity-100'
+                    ? 'text-white opacity-100'
                     : 'text-content-faint opacity-0 group-hover:opacity-70'
                 }`}
               >
@@ -442,7 +442,7 @@ export default function ProjectShowcase() {
               </span>
               <span
                 className={`rounded-full transition-all duration-300 ${
-                  active === i ? 'w-2 h-6 bg-copper' : 'w-2 h-2 bg-white/20 group-hover:bg-white/40'
+                  active === i ? 'w-2 h-6 bg-white' : 'w-2 h-2 bg-white/20 group-hover:bg-white/40'
                 }`}
               />
             </button>
@@ -457,7 +457,7 @@ export default function ProjectShowcase() {
           <div className="flex flex-col items-center gap-2 text-content-faint">
             <span className="text-xs font-mono tracking-widest uppercase">Scroll</span>
             <motion.span
-              className="block w-px h-8 bg-gradient-to-b from-copper/60 to-transparent"
+              className="block w-px h-8 bg-gradient-to-b from-white/50 to-transparent"
               animate={{ scaleY: [0.4, 1, 0.4], opacity: [0.3, 1, 0.3] }}
               transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
               style={{ transformOrigin: 'top' }}

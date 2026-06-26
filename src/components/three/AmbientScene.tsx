@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 /**
  * Fixed, full-bleed ambient starfield that sits behind all content and ties the
  * sections together (replaces the old plasma shader). Constant slow drift +
- * scroll-driven tilt give the page depth. Copper "dust" adds the accent warmth.
+ * scroll-driven tilt give the page depth. White "dust" adds the accent warmth.
  * Reduced-motion users get a static warm gradient instead of a live canvas.
  */
 function Drifting() {
@@ -35,7 +35,7 @@ function Drifting() {
         scale={[20, 20, 8]}
         size={3.4}
         speed={0.22}
-        color="#e3a579"
+        color="#ffffff"
         opacity={0.55}
         noise={1.4}
       />
@@ -50,7 +50,7 @@ export default function AmbientScene({ className }: { className?: string }) {
     return (
       <div
         className={cn(
-          'bg-[radial-gradient(ellipse_at_50%_-10%,rgba(200,126,84,0.14),transparent_60%)]',
+          'bg-[radial-gradient(ellipse_at_50%_-10%,rgba(255,255,255,0.08),transparent_60%)]',
           className,
         )}
       />

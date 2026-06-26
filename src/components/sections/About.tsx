@@ -25,8 +25,8 @@ const cardFaces: { label: string; content: ReactNode }[] = [
     label: 'Education',
     content: (
       <div className="flex items-start gap-4">
-        <div className="w-10 h-10 rounded-lg bg-copper/12 flex items-center justify-center flex-shrink-0">
-          <GraduationCap size={20} className="text-copper-lite" />
+        <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+          <GraduationCap size={20} className="text-white" />
         </div>
         <div>
           <h3 className="font-semibold text-content mb-2">Education</h3>
@@ -52,8 +52,8 @@ const cardFaces: { label: string; content: ReactNode }[] = [
     label: 'Current Focus',
     content: (
       <div className="flex items-start gap-4">
-        <div className="w-10 h-10 rounded-lg bg-copper/12 flex items-center justify-center flex-shrink-0">
-          <Briefcase size={20} className="text-copper" />
+        <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+          <Briefcase size={20} className="text-white" />
         </div>
         <div>
           <h3 className="font-semibold text-content mb-2">Current Focus</h3>
@@ -75,8 +75,8 @@ const cardFaces: { label: string; content: ReactNode }[] = [
     label: 'Location',
     content: (
       <div className="flex items-start gap-4">
-        <div className="w-10 h-10 rounded-lg bg-bronze/20 flex items-center justify-center flex-shrink-0">
-          <MapPin size={20} className="text-copper-lite" />
+        <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+          <MapPin size={20} className="text-white" />
         </div>
         <div>
           <h3 className="font-semibold text-content mb-2">Location &amp; Availability</h3>
@@ -166,7 +166,7 @@ function AboutRing() {
         <button
           onClick={prev}
           aria-label="Previous card"
-          className="w-9 h-9 rounded-full glass-card flex items-center justify-center text-content-tertiary hover:text-copper transition-colors"
+          className="w-9 h-9 rounded-full glass-card flex items-center justify-center text-content-tertiary hover:text-white transition-colors"
         >
           <ChevronLeft size={18} />
         </button>
@@ -177,7 +177,7 @@ function AboutRing() {
               onClick={() => goToIndex(i)}
               aria-label={`Show ${face.label}`}
               className={`h-2 rounded-full transition-all ${
-                active === i ? 'w-6 bg-copper' : 'w-2 bg-white/20 hover:bg-white/40'
+                active === i ? 'w-6 bg-white' : 'w-2 bg-white/20 hover:bg-white/40'
               }`}
             />
           ))}
@@ -185,7 +185,7 @@ function AboutRing() {
         <button
           onClick={next}
           aria-label="Next card"
-          className="w-9 h-9 rounded-full glass-card flex items-center justify-center text-content-tertiary hover:text-copper transition-colors"
+          className="w-9 h-9 rounded-full glass-card flex items-center justify-center text-content-tertiary hover:text-white transition-colors"
         >
           <ChevronRight size={18} />
         </button>
@@ -240,7 +240,7 @@ export default function About() {
           </p>
           <p className="text-content-secondary leading-relaxed">
             Currently working as a{' '}
-            <span className="text-copper">Data Science &amp; AI Engineer at PTC Hungary</span>,
+            <span className="text-white font-medium">Data Science &amp; AI Engineer at PTC Hungary</span>,
             building agentic pipelines. Simultaneously conducting thesis research on fMRI
             harmonisation — NeurIPS 2026 submission. Also active in other research in the telcom
             domain.
@@ -260,7 +260,7 @@ export default function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.04, duration: 0.3 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.05, backgroundColor: 'rgba(200,126,84,0.15)' }}
+                whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
                 className="px-3 py-1 rounded-full text-xs font-mono text-content-tertiary border border-white/[0.08] bg-white/[0.03] cursor-default transition-colors"
               >
                 {tag}

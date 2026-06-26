@@ -1,55 +1,55 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Monochrome base (smooth near-black → warm off-white) ───────────── */
-  --color-background: #0b0b0c;
-  --color-foreground: #f4f1ec;
+  /* ── Monochrome base (Apple-inspired Space Grey / Black) ───────────── */
+  --color-background: #000000;
+  --color-foreground: #f5f5f7;
 
   /* Surfaces */
-  --color-card: #121110;
-  --color-card-foreground: #f4f1ec;
-  --color-popover: #121110;
-  --color-popover-foreground: #f4f1ec;
-  --color-secondary: #1a1916;
-  --color-secondary-foreground: #f4f1ec;
-  --color-muted: #1a1916;
-  --color-muted-foreground: #a8a29b;
-  --color-accent: #211f1b;
-  --color-accent-foreground: #f4f1ec;
+  --color-card: #1d1d1f;
+  --color-card-foreground: #f5f5f7;
+  --color-popover: #1d1d1f;
+  --color-popover-foreground: #f5f5f7;
+  --color-secondary: #2d2d2f;
+  --color-secondary-foreground: #f5f5f7;
+  --color-muted: #1d1d1f;
+  --color-muted-foreground: #86868b;
+  --color-accent: #2d2d2f;
+  --color-accent-foreground: #ffffff;
 
-  /* Copper accent system (single warm metallic) */
-  --color-primary: #c87e54;          /* copper — accents, links, orbits, CTAs */
-  --color-primary-foreground: #0b0b0c;
-  --color-copper: #c87e54;
-  --color-copper-lite: #e3a579;      /* lit copper — specular / glow top-stops */
-  --color-bronze: #8c5a3b;           /* deeper companion — pressed / gradients */
+  /* Clean minimal accent system (Mapped to old copper classes for compatibility) */
+  --color-primary: #ffffff;          
+  --color-primary-foreground: #000000;
+  --color-copper: #ffffff;
+  --color-copper-lite: #f5f5f7;      
+  --color-bronze: #424245;           
 
   /* Functional only */
-  --color-available: #6ee7a8;        /* soft emerald — "available" live dot     */
-  --color-destructive: #ef4444;
-  --color-destructive-foreground: #f4f1ec;
+  --color-available: #34c759;        /* Apple Green */
+  --color-destructive: #ff3b30;      /* Apple Red */
+  --color-destructive-foreground: #ffffff;
 
   /* Lines & rings */
-  --color-border: rgba(244, 241, 236, 0.09);
-  --color-input: rgba(244, 241, 236, 0.12);
-  --color-ring: #c87e54;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-input: rgba(255, 255, 255, 0.1);
+  --color-ring: #ffffff;
 
-  /* ── Text hierarchy — 4 levels, use instead of ad-hoc white/N opacities ── */
-  --color-content: #f4f1ec;                             /* L1 — headings / emphasis */
-  --color-content-secondary: rgba(244, 241, 236, 0.76); /* L2 — body copy */
-  --color-content-tertiary: rgba(244, 241, 236, 0.55);  /* L3 — metadata / captions */
-  --color-content-faint: rgba(244, 241, 236, 0.38);     /* L4 — decorative only */
-  --color-copper-text: #d89469;  /* copper tuned for small text — keeps AA on glass */
+  /* ── Text hierarchy ── */
+  --color-content: #ffffff;                             
+  --color-content-secondary: #86868b; 
+  --color-content-tertiary: #515154;  
+  --color-content-faint: rgba(255, 255, 255, 0.2);     
+  --color-copper-text: #ffffff;  
 
   /* Optical tracking scale */
-  --tracking-display: -0.03em;   /* hero-scale display type */
-  --tracking-heading: -0.022em;  /* section headings */
+  --tracking-display: -0.04em;   
+  --tracking-heading: -0.02em;  
 
   --font-display: 'Inter', sans-serif;
-  --font-body: 'Source Sans 3', sans-serif;
+  --font-body: 'Inter', sans-serif; /* Unify on Inter for cleaner Apple look */
   --font-mono: 'JetBrains Mono', monospace;
 
-  --radius: 0.75rem;
+  --radius: 1rem;
 }
 
 /* Base reset */
@@ -62,26 +62,26 @@ html {
 }
 
 body {
-  background-color: #0b0b0c;
-  color: #f4f1ec;
-  font-family: 'Source Sans 3', sans-serif;
+  background-color: #000000;
+  color: #f5f5f7;
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  letter-spacing: -0.003em;
+  letter-spacing: -0.01em;
 }
 
 ::selection {
-  background: rgba(200, 126, 84, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   color: #fff;
 }
 
-/* Accessible focus — copper ring; :where() keeps specificity at zero */
+/* Accessible focus */
 :where(a, button, [tabindex='0']):focus-visible {
-  outline: 2px solid rgba(200, 126, 84, 0.9);
+  outline: 2px solid rgba(255, 255, 255, 0.8);
   outline-offset: 2px;
 }
 
-/* Skip-to-content link — off-screen until keyboard focus */
+/* Skip-to-content link */
 .skip-link {
   position: fixed;
   top: 12px;
@@ -89,8 +89,8 @@ body {
   z-index: 100;
   padding: 0.6rem 1rem;
   border-radius: 0.5rem;
-  background: var(--color-copper);
-  color: #0b0b0c;
+  background: #ffffff;
+  color: #000000;
   font-weight: 600;
   font-size: 0.875rem;
   transform: translateY(-200%);
@@ -100,29 +100,29 @@ body {
   transform: translateY(0);
 }
 
-/* ── Glass morphism — warm-neutral tint, copper hairline ──────────────── */
+/* ── Apple-style Frosted Glass ──────────────── */
 .glass-card {
-  background: rgba(255, 252, 248, 0.035);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 241, 236, 0.08);
-  box-shadow: inset 0 1px 0 0 rgba(255, 252, 248, 0.04);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
 }
 
-/* Copper edge-glow on hover (used by interactive cards) */
+/* Clean white glow */
 .glow-copper {
-  box-shadow: 0 0 28px rgba(200, 126, 84, 0.22);
+  box-shadow: 0 0 28px rgba(255, 255, 255, 0.15);
 }
 
-/* Metallic copper text gradient for headings/accents */
+/* Metallic silver/white text gradient */
 .text-copper-gradient {
-  background-image: linear-gradient(105deg, #e3a579 0%, #c87e54 45%, #8c5a3b 100%);
+  background-image: linear-gradient(135deg, #ffffff 0%, #a1a1a6 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* 3D stage helpers (About card ring, helix fallbacks) */
+/* 3D stage helpers */
 .scene-3d {
   perspective: 1400px;
   perspective-origin: 50% 50%;
@@ -135,7 +135,7 @@ body {
   -webkit-backface-visibility: hidden;
 }
 
-/* Editorial section kicker (e.g. "01 — About") */
+/* Editorial section kicker */
 .section-kicker {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.72rem;
@@ -149,14 +149,14 @@ body {
   width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b0b0c;
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2722;
+  background: #424245;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(200, 126, 84, 0.5);
+  background: #86868b;
 }
 
 /* CPU Architecture SVG animation paths */

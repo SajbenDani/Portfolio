@@ -31,14 +31,14 @@ export default function App() {
       <Suspense fallback={null}>
         <AmbientScene className="fixed inset-0 z-0 opacity-70 pointer-events-none" />
       </Suspense>
-      {/* Warm copper vignette to anchor the top of the page */}
-      <div className="fixed inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_0%,rgba(200,126,84,0.06),transparent_55%)]" />
+      {/* Clean ambient vignette to anchor the top of the page */}
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,255,255,0.04),transparent_55%)]" />
       {/* Film-grain texture above content, below progress bar */}
       <GrainOverlay />
 
       {/* Scroll progress bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] origin-left bg-gradient-to-r from-copper-lite via-copper to-bronze z-[60]"
+        className="fixed top-0 left-0 right-0 h-[2px] origin-left bg-gradient-to-r from-white/80 via-white/50 to-white/20 z-[60]"
         style={{ scaleX }}
       />
 
