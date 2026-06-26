@@ -29,7 +29,7 @@ export const projects: Project[] = [
     image: '/projects/fmri-super-resolution.jpg',
     title: 'fMRI Super-Resolution & Harmonisation',
     description:
-      'Thesis research applying Latent Diffusion Models to fMRI brain scan super-resolution and multi-site harmonisation. Enables cross-scanner compatibility for large-scale neuroimaging studies — submitted to NeurIPS 2026.',
+      'Thesis research applying Latent Diffusion Models to fMRI brain scan super-resolution and synthetic data generation. Enables enhanced data quality for large-scale neuroimaging studies.',
     category: 'research',
     tags: ['Python', 'PyTorch', 'Diffusion Models', 'Generative AI', 'Medical Imaging'],
     github: 'https://github.com/SajbenDani/Thesis',
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     image: '/projects/wids-wildfire-2026.jpg',
     title: 'WiDS Datathon 2026 · Wildfire Survival Prediction',
     description:
-      'Competed in the Women in Data Science Global Datathon 2026. Predicted wildfire patient survival outcomes from a tabular dataset using tabular foundation models (TabPFN, Mitra), RSF and XGBoost baselines, feature engineering, VIF score calculation, correlation analysis, hyperparameter tuning, random seed search, and confident prediction augmentation. Optimised towards Hybrid Score = 0.3 × C-index + 0.7 × (1 − Weighted Brier Score) and participated in community discussions.',
+      'Competed in the Women in Data Science Global Datathon 2026. Predicted which safety areas will get hit first by the fire using tabular foundation models (TabPFN, Mitra), RSF and XGBoost baselines, feature engineering, VIF score calculation, correlation analysis, and hyperparameter tuning. Optimised towards Hybrid Score = 0.3 × C-index + 0.7 × (1 − Weighted Brier Score).',
     category: 'competition',
     tags: ['Python', 'TabPFN', 'XGBoost', 'RSF', 'Survival Analysis', 'Feature Engineering'],
     github: 'https://www.kaggle.com/competitions/WiDSWorldWide_GlobalDathon26',
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     image: '/projects/survival-analysis.jpg',
     title: 'Survival Analysis · Tabular Foundation Models',
     description:
-      'Research project at TUM investigating Tabular Foundation Models (Tarte, TabPFN, TabICL) for medical prognostic tasks. Benchmarked against DeepSurv, XGBoost, and RSF via survival stacking. Addressed competing risks and extended the Neural Fine-Gray repository. Awarded grade 1.0; presented at a TUM university research conference.',
+      'Research project at TUM investigating Tabular Foundation Models (Tarte, TabPFN, TabICL) for medical prognostic tasks. Benchmarked against DeepSurv, XGBoost, and RSF via survival stacking. Addressed competing risks and worked with the Neural Fine-Gray repository. Awarded grade 1.0; presented at a TUM university research conference.',
     category: 'research',
     tags: ['Python', 'PyTorch', 'TabPFN', 'Survival Analysis', 'Competing Risks', 'Neural Fine-Gray'],
     github: 'https://github.com/Laminfr/TFM_for_Medical_Prognostic_Task',
@@ -72,7 +72,7 @@ export const projects: Project[] = [
     image: '/projects/gnn-llm-survey.jpg',
     title: 'Towards Temporal Reasoning: Temporal GNN/LLM Hybrid Survey',
     description:
-      'First taxonomy dedicated to Temporal GNN-LLM Hybrids (TGLH) — architectures combining Graph Neural Networks with Large Language Models for temporal reasoning over dynamic graphs. Categorises LLM-centred, GNN-centred, and fusion-based approaches, covering 100+ papers with benchmarks for temporal question answering, forecasting, and graph generation. Co-authored by a team of 4.',
+      'First taxonomy dedicated to Temporal GNN-LLM Hybrids (TGLH) — architectures combining Graph Neural Networks with Large Language Models for temporal reasoning over dynamic graphs. Categorises LLM-centred, GNN-centred, and fusion-based approaches across 100+ papers, including benchmarks for temporal QA and forecasting. Co-authored by a team of 4.',
     category: 'research',
     tags: ['GNN', 'LLM', 'Temporal Reasoning', 'Dynamic Graphs', 'Survey'],
     pdf: '/GNNsAndLLMs.pdf',

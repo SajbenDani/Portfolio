@@ -33,7 +33,7 @@ const cardFaces: { label: string; content: ReactNode }[] = [
           <div className="space-y-2 text-[13px] text-content-tertiary leading-snug">
             <div>
               <p className="text-content font-medium">MSc Advanced Artificial Intelligence</p>
-              <p>University College Dublin (#118 globally) · 2026–2027</p>
+              <p>University College Dublin (top 100 globally) · 2026–2027</p>
             </div>
             <div>
               <p className="text-content font-medium">B.Sc. Computer Science Engineering</p>
@@ -60,11 +60,11 @@ const cardFaces: { label: string; content: ReactNode }[] = [
           <div className="space-y-2 text-[13px] text-content-tertiary leading-snug">
             <div>
               <p className="text-content font-medium">Data Science &amp; AI Engineer Intern</p>
-              <p>PTC Hungary · Python · LLM · AI Agents</p>
+              <p>PTC Hungary · Python · MCP · AI Agents</p>
             </div>
             <div>
               <p className="text-content font-medium">Thesis Research</p>
-              <p>fMRI Harmonisation · NeurIPS 2026 submission</p>
+              <p>fMRI Super-Resolution · Synthetic Data Gen</p>
             </div>
           </div>
         </div>
@@ -241,9 +241,8 @@ export default function About() {
           <p className="text-content-secondary leading-relaxed">
             Currently working as a{' '}
             <span className="text-white font-medium">Data Science &amp; AI Engineer at PTC Hungary</span>,
-            building agentic pipelines. Simultaneously conducting thesis research on fMRI
-            harmonisation — NeurIPS 2026 submission. Also active in other research in the telcom
-            domain.
+            building agentic pipelines and an MCP server. Simultaneously conducting thesis research on fMRI
+            super-resolution and synthetic data generation.
           </p>
           <p className="text-content-secondary leading-relaxed">
             My work sits at the intersection of cutting-edge AI research and practical engineering.
