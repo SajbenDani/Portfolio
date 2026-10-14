@@ -1,127 +1,141 @@
-export type FilterCategory = 'all' | 'ai' | 'web' | 'research' | 'competition'
+import { CAMAD_PAPER } from '@/data/links'
+import type { PhotoKey } from '@/data/photos'
 
-// Showcase banner images live in public/projects/ (1200×750 JPEG, named by project id).
-// Sources: Unsplash (Unsplash License — free commercial use, no attribution required),
-// except fmri-super-resolution.jpg, adapted from Miller AH, Jones JF, Drake DF, Tian H,
-// Unger ER, Pagnoni G (2014), PLoS ONE 9(5): e98156, doi:10.1371/journal.pone.0098156 — CC BY 4.0.
+export type ProjectCategory = 'research' | 'ai' | 'competition' | 'web'
+
+// Project images are the owner's own artefacts, never stock: his photos
+// (public/photos/) or figures and frames from his work (public/projects/):
+// fmri-thesis-sr.jpg = super-resolved slices from the thesis (Fig. 4.18),
+// self-driving-demo.jpg = a frame of public/demo.mp4. Projects without an
+// artefact are listed without an image.
 
 export interface Project {
   id: string
   title: string
-  description: string
-  /** Banner photo shown on the showcase laptop screen ("/projects/<id>.jpg"). */
-  image: string
-  category: FilterCategory
+  summary: string
+  category: ProjectCategory
   tags: string[]
+  /** Own photo or an artefact from the work itself (public/projects/). None = listed without an image. */
+  photo?: PhotoKey
+  banner?: string
+  imageAlt?: string
+  /** object-position for the image when the subject is off-centre. */
+  imagePosition?: string
   github?: string
-  demo?: string
-  video?: string
+  kaggle?: string
+  paper?: string
   pdf?: string
-  primaryLink?: string   // overrides github for card-click URL
-  achievement?: string
-  isPrivate?: boolean
-  featured: boolean
+  /** Label for the PDF link; defaults to “PDF”. */
+  pdfLabel?: string
+  video?: string
+  /** Wide card on large screens. */
+  wide?: boolean
 }
 
 export const projects: Project[] = [
   {
-    id: 'fmri-super-resolution',
-    image: '/projects/fmri-super-resolution.jpg',
-    title: 'fMRI Super-Resolution & Harmonisation',
-    description:
-      'Thesis research applying Latent Diffusion Models to fMRI brain scan super-resolution and synthetic data generation. Enables enhanced data quality for large-scale neuroimaging studies.',
+    id: 'telecom-semantic-gap',
+    title: 'Tool-grounded validation of telecom topologies',
+    summary:
+      'An Actor-Critic loop that generates RFC 8345 YANG topologies and accepts them only when a tool-grounded LLM validator, running open-weight models locally, agrees they carry the intended service. Built with Ericsson, published at IEEE CAMAD 2026.',
     category: 'research',
-    tags: ['Python', 'PyTorch', 'Diffusion Models', 'Generative AI', 'Medical Imaging'],
-    github: 'https://github.com/SajbenDani/Thesis',
-    featured: true,
-  },
-  {
-    id: 'wids-wildfire-2026',
-    image: '/projects/wids-wildfire-2026.jpg',
-    title: 'WiDS Datathon 2026 · Wildfire Survival Prediction',
-    description:
-      'Competed in the Women in Data Science Global Datathon 2026. Predicted which safety areas will get hit first by the fire using tabular foundation models (TabPFN, Mitra), RSF and XGBoost baselines, feature engineering, VIF score calculation, correlation analysis, and hyperparameter tuning. Optimised towards Hybrid Score = 0.3 × C-index + 0.7 × (1 − Weighted Brier Score).',
-    category: 'competition',
-    tags: ['Python', 'TabPFN', 'XGBoost', 'RSF', 'Survival Analysis', 'Feature Engineering'],
-    github: 'https://www.kaggle.com/competitions/WiDSWorldWide_GlobalDathon26',
-    featured: true,
+    tags: ['LLM agents', 'Qwen', 'Graph tools', 'Synthetic data'],
+    photo: 'camad',
+    imagePosition: 'object-[18%_50%]',
+    imageAlt: 'Dániel presenting the paper at IEEE CAMAD 2026, slide titled “How a verdict is made — and why we prune first”.',
+    paper: CAMAD_PAPER,
+    wide: true,
   },
   {
     id: 'survival-analysis',
-    image: '/projects/survival-analysis.jpg',
-    title: 'Survival Analysis · Tabular Foundation Models',
-    description:
-      'Research project at TUM investigating Tabular Foundation Models (Tarte, TabPFN, TabICL) for medical prognostic tasks. Benchmarked against DeepSurv, XGBoost, and RSF via survival stacking. Addressed competing risks and worked with the Neural Fine-Gray repository. Awarded grade 1.0; presented at a TUM university research conference.',
+    title: 'Survival analysis with tabular foundation models',
+    summary:
+      'TUM practical with two co-authors: can tabular foundation models (TabPFN, TabICL, TARTE) improve survival prediction? We tested FM embeddings and survival stacking against CoxPH, DeepSurv, XGBoost, RSF and Neural Fine-Gray, including competing risks. C-index 0.87 on SEER and 0.884 on PBC; presented as a poster at TUM.',
     category: 'research',
-    tags: ['Python', 'PyTorch', 'TabPFN', 'Survival Analysis', 'Competing Risks', 'Neural Fine-Gray'],
+    tags: ['TabPFN', 'TabICL', 'Survival stacking', 'Spark'],
+    photo: 'tum',
+    imageAlt: 'Dániel and his co-authors beside their poster on tabular foundation models at TUM.',
     github: 'https://github.com/Laminfr/TFM_for_Medical_Prognostic_Task',
-    featured: true,
+    pdf: '/papers/tum-tabular-foundation-models-report.pdf',
+    pdfLabel: 'Read the report',
   },
   {
-    id: 'telecom-agentic',
-    image: '/projects/telecom-agentic.jpg',
-    title: 'Agentic Telecommunication Semantic Check',
-    description: 'Ericsson × BME Research — content not yet public.',
+    id: 'fmri-super-resolution',
+    title: 'fMRI super-resolution with latent diffusion',
+    summary:
+      'Bachelor thesis: a latent diffusion model in PyTorch that super-resolves fMRI brain scans and generates synthetic scans for augmentation. Won an award at the Scientific Students’ Conference (TDK) in 2025.',
+    category: 'research',
+    tags: ['PyTorch', 'Diffusion models', 'Medical imaging'],
+    banner: '/projects/fmri-thesis-sr.jpg',
+    imageAlt: 'Six axial fMRI slices, glowing green on black, super-resolved by the thesis model (classifier-free guidance 7.5).',
+    github: 'https://github.com/SajbenDani/Thesis',
+    pdf: '/thesis.pdf',
+    pdfLabel: 'Thesis',
+  },
+  {
+    id: 'skin-cancer',
+    title: 'Skin cancer classifier',
+    summary:
+      'A multi-modal model: CNN transfer learning on dermoscopy images plus a random forest on patient metadata, trained on 380K+ samples. 90% accuracy on a balanced test set after tackling heavy class imbalance. Team of three.',
     category: 'ai',
-    tags: ['LLM', 'AI Agents', 'Ericsson', 'BME'],
-    isPrivate: true,
-    featured: false,
+    tags: ['TensorFlow', 'CNN', 'Random forest', 'Class imbalance'],
+    github: 'https://github.com/SajbenDani/MoleCancerDetection',
+  },
+  {
+    id: 'wids-wildfire-2026',
+    title: 'WiDS Datathon 2026: wildfire survival',
+    summary:
+      'Predicting which safety zones a wildfire reaches first, with tabular foundation models (TabPFN, Mitra), random survival forests and XGBoost, tuned for a hybrid of C-index and weighted Brier score.',
+    category: 'competition',
+    tags: ['TabPFN', 'XGBoost', 'Survival analysis', 'Feature engineering'],
+    kaggle: 'https://www.kaggle.com/competitions/WiDSWorldWide_GlobalDathon26',
   },
   {
     id: 'gnn-llm-survey',
-    image: '/projects/gnn-llm-survey.jpg',
-    title: 'Towards Temporal Reasoning: Temporal GNN/LLM Hybrid Survey',
-    description:
-      'First taxonomy dedicated to Temporal GNN-LLM Hybrids (TGLH) — architectures combining Graph Neural Networks with Large Language Models for temporal reasoning over dynamic graphs. Categorises LLM-centred, GNN-centred, and fusion-based approaches across 100+ papers, including benchmarks for temporal QA and forecasting. Co-authored by a team of 4.',
+    title: 'Survey of temporal GNN–LLM hybrids',
+    summary:
+      'A taxonomy of models that join graph neural networks and language models to reason over graphs that change in time, across 100+ papers and their benchmarks. Team of four.',
     category: 'research',
-    tags: ['GNN', 'LLM', 'Temporal Reasoning', 'Dynamic Graphs', 'Survey'],
+    tags: ['GNN', 'LLM', 'Temporal reasoning'],
     pdf: '/GNNsAndLLMs.pdf',
-    primaryLink: '/GNNsAndLLMs.pdf',
-    featured: false,
   },
   {
     id: 'self-driving-car',
-    image: '/projects/self-driving-car.jpg',
-    title: 'Self-Driving Car Simulation',
-    description:
-      'Built a self-driving car simulation leveraging neural networks in pure JavaScript — no external ML libraries. The AI learns to navigate traffic through a genetic algorithm that evolves driving behaviour over generations.',
+    title: 'Self-driving car simulation',
+    summary:
+      'Neural networks written from scratch in plain JavaScript, no ML libraries. Cars learn to drive through traffic as a genetic algorithm evolves their behaviour over generations.',
     category: 'ai',
-    tags: ['JavaScript', 'Neural Networks', 'Genetic Algorithm', 'Canvas API'],
+    tags: ['JavaScript', 'Neural networks', 'Genetic algorithm'],
+    banner: '/projects/self-driving-demo.jpg',
+    imageAlt: 'Frame from the simulation: cars on a three-lane road and, beside it, the live neural network steering the lead car.',
     github: 'https://github.com/SajbenDani/SelfDrivingCar',
     video: '/demo.mp4',
-    featured: true,
-  },
-  {
-    id: 'mole-cancer-detection',
-    image: '/projects/mole-cancer-detection.jpg',
-    title: 'Mole Cancer Detection',
-    description:
-      'Deep learning model achieving 90% accuracy (on a balanced test set) for early melanoma detection. Built a CNN with TensorFlow on dermoscopy image datasets, tackling heavy class imbalance with augmentation and resampling strategies. Developed in a team of 3.',
-    category: 'ai',
-    tags: ['Python', 'TensorFlow', 'CNN', 'Class Imbalance', 'Medical AI'],
-    github: 'https://github.com/SajbenDani/MoleCancerDetection',
-    featured: true,
+    wide: true,
   },
   {
     id: 'exercise-logger',
-    image: '/projects/exercise-logger.jpg',
-    title: 'Exercise Logger',
-    description:
-      'Full-stack fitness tracking application built with React, TypeScript and Material-UI. Features workout logging, progress charts, and a clean responsive interface with efficient and optimal data fetching via public APIs.',
+    title: 'Exercise logger',
+    summary:
+      'A React and TypeScript app for logging workouts and charting progress, with lean data fetching from public APIs.',
     category: 'web',
-    tags: ['React', 'TypeScript', 'Material-UI', 'Public APIs'],
+    tags: ['React', 'TypeScript', 'Material UI'],
     github: 'https://github.com/SajbenDani/ExerciseLogger',
-    featured: true,
   },
   {
     id: 'game-of-life',
-    image: '/projects/game-of-life.jpg',
-    title: 'Conway\'s Game of Life',
-    description:
-      'My first programming project — Conway\'s Game of Life built entirely in Java, including a custom Java Swing UI. Marks the beginning of my software development journey and demonstrates core OOP and UI principles.',
+    title: 'Conway’s Game of Life',
+    summary:
+      'My first programming project: the Game of Life in Java with a hand-built Swing interface. Where it started.',
     category: 'web',
-    tags: ['Java', 'Java Swing', 'OOP', 'Simulation'],
+    tags: ['Java', 'Swing', 'OOP'],
     github: 'https://github.com/SajbenDani/Java_Game_Of_Life',
-    featured: false,
   },
+]
+
+export const projectFilters: { label: string; value: ProjectCategory | 'all' }[] = [
+  { label: 'All', value: 'all' },
+  { label: 'Research', value: 'research' },
+  { label: 'ML', value: 'ai' },
+  { label: 'Contests', value: 'competition' },
+  { label: 'Web', value: 'web' },
 ]

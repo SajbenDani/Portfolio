@@ -1,231 +1,131 @@
-import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion'
-import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react'
-import { LiquidButton } from '@/components/ui/liquid-glass-button'
-import Magnetic from '@/components/shared/Magnetic'
-import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { asset } from '@/lib/utils'
+import { useRef } from 'react'
+import { gsap, SplitText, useGSAP } from '@/lib/gsap'
+import { MQ } from '@/lib/motion'
+import { scrollToId } from '@/lib/smooth'
+import Picture from '@/components/ui/Picture'
+import { Button } from '@/components/ui/Button'
 
-const roles = [
-  'AI Researcher',
-  'Deep Learning Engineer',
-  'ML Engineer',
-  'Computer Scientist',
-]
-
-const socialLinks = [
-  { icon: Github, href: 'https://github.com/SajbenDani', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/d%C3%A1nielsajben/', label: 'LinkedIn' },
-  { icon: Mail, href: 'mailto:sajben.dani@gmail.com', label: 'Email' },
-]
-
-const SPOT_SIZE = 560
-
+/**
+ * Chapter "Hello". A stage panel holds the studio portrait split into two
+ * depth layers (backdrop plate + alpha cut-out). Scrolling flies the camera
+ * in: the panel tilts up and centres, then pushes in and arcs a few degrees,
+ * the subject growing faster than the backdrop — a drone dolly around him.
+ */
 export default function Hero() {
-  const [roleIdx, setRoleIdx] = useState(0)
-  const reduced = useReducedMotion()
-  const finePointer = useMediaQuery('(pointer: fine)')
-  const spotlightOn = finePointer && !reduced
+  const root = useRef<HTMLElement>(null)
 
-  // Pointer-following copper spotlight — motion values only, no re-renders.
-  const rawX = useMotionValue(-SPOT_SIZE)
-  const rawY = useMotionValue(-SPOT_SIZE)
-  const spotX = useSpring(rawX, { stiffness: 60, damping: 20 })
-  const spotY = useSpring(rawY, { stiffness: 60, damping: 20 })
-  const hasMoved = useRef(false)
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia()
+      mm.add({ motion: MQ.motion, desktop: '(min-width: 768px)' }, (ctx) => {
+        const { motion, desktop } = ctx.conditions as { motion: boolean; desktop: boolean }
+        if (!motion) return
 
-  const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (!spotlightOn) return
-    const rect = e.currentTarget.getBoundingClientRect()
-    const px = e.clientX - rect.left - SPOT_SIZE / 2
-    const py = e.clientY - rect.top - SPOT_SIZE / 2
-    if (!hasMoved.current) {
-      hasMoved.current = true
-      rawX.jump(px)
-      rawY.jump(py)
-      spotX.jump(px)
-      spotY.jump(py)
-      return
-    }
-    rawX.set(px)
-    rawY.set(py)
-  }
+        const stage = root.current!.querySelector<HTMLElement>('.hero-stage')!
 
-  useEffect(() => {
-    const t = setInterval(() => setRoleIdx((i) => (i + 1) % roles.length), 3000)
-    return () => clearInterval(t)
-  }, [])
+        // Entrance: the headline rises out of line masks (re-split once the web
+        // font lands, so line breaks match the final type), the stage lifts in.
+        SplitText.create('.hero-title', {
+          type: 'lines',
+          mask: 'lines',
+          autoSplit: true,
+          onSplit: (self) => gsap.from(self.lines, { yPercent: 100, duration: 1.1, stagger: 0.09, ease: 'expo.out', delay: 0.05 }),
+        })
+        gsap
+          .timeline({ defaults: { ease: 'expo.out' } })
+          .from('.hero-sub', { y: 16, autoAlpha: 0, duration: 0.9, stagger: 0.08 }, 0.35)
+          .from('.hero-stage-in', { y: 90, autoAlpha: 0, duration: 1.4 }, 0.2)
+
+        // Scroll: pinned camera move, scrubbed to the scrollbar.
+        gsap.set('.hero-rig', { transformPerspective: desktop ? 1800 : 1100, transformOrigin: '50% 100%' })
+        // Settle slightly below centre so the head never slides under the top bar.
+        const centre = () => -(stage.offsetTop - (window.innerHeight - stage.offsetHeight) / 2 - window.innerHeight * 0.06)
+
+        gsap
+          .timeline({
+            defaults: { ease: 'none' },
+            scrollTrigger: {
+              trigger: '.hero-pin',
+              start: 'top top',
+              end: desktop ? '+=115%' : '+=85%',
+              pin: true,
+              scrub: 0.6,
+              invalidateOnRefresh: true,
+            },
+          })
+          .to('.hero-copy', { autoAlpha: 0, y: -48, duration: 0.3 }, 0)
+          .fromTo('.hero-rig', { rotateX: 6, scale: 0.97 }, { rotateX: 0, scale: 1, y: centre, duration: 0.55 }, 0)
+          .to('.hero-rig', { rotateY: desktop ? -6 : -4, scale: desktop ? 1.04 : 1.03, duration: 0.45 }, 0.55)
+          .fromTo('.hero-bg', { scale: 1.24, xPercent: -2.5 }, { scale: 1.06, xPercent: 2.5, duration: 1 }, 0)
+          .fromTo('.hero-fg', { scale: 1, xPercent: 2 }, { scale: 1.12, xPercent: -2, duration: 1 }, 0)
+      })
+      return () => mm.revert()
+    },
+    { scope: root },
+  )
 
   return (
     <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      onMouseMove={onMouseMove}
+      ref={root}
+      id="hello"
+      aria-labelledby="hero-title"
+      className="relative overflow-x-clip [--hero-r:1.75rem] md:[--hero-r:2.5rem] [--pop:1.1] [--stage-h:min(60svh,520px)] [--stage-y:0.73] md:[--pop:1.12] md:[--stage-h:min(64svh,620px)] md:[--stage-y:0.65]"
     >
-      {/* Clean ambient glow behind the name */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(255,255,255,0.05),transparent_55%)] pointer-events-none" />
+      <div className="hero-pin relative full-motion:h-[100svh]">
+        <div className="hero-copy relative z-10 mx-auto max-w-[1240px] px-5 pt-[clamp(5.25rem,12svh,7.5rem)] text-center">
+          <h1 id="hero-title" tabIndex={-1} data-focus-target className="hero-title text-hero font-bold tracking-[-0.04em] outline-none [text-wrap:wrap]">
+            <span className="block">Dániel Sajben.</span>
+            <span className="mt-2 block text-chapter tracking-[-0.035em] text-label-2">Enthusiastic about AI research.</span>
+          </h1>
+          <p className="hero-sub mx-auto mt-5 max-w-[42ch] text-lead text-label-2 md:max-w-[54ch]">
+            First-author paper at IEEE CAMAD 2026. Now an MSc Advanced AI student at University College Dublin,
+            after PTC, Morgan Stanley and research with Ericsson.
+          </p>
+          <div className="hero-sub mt-7 flex flex-wrap items-center justify-center gap-3">
+            <Button size="lg" className="max-sm:h-11 max-sm:px-5 max-sm:text-[0.9375rem]" onClick={() => scrollToId('contact')}>
+              Get in touch
+            </Button>
+            <Button size="lg" variant="secondary" className="max-sm:h-11 max-sm:px-5 max-sm:text-[0.9375rem]" onClick={() => scrollToId('research')}>
+              See the research
+            </Button>
+          </div>
+        </div>
 
-      {/* Pointer-following spotlight */}
-      {spotlightOn && (
-        <motion.div
-          aria-hidden="true"
-          className="pointer-events-none absolute top-0 left-0 rounded-full"
-          style={{
-            x: spotX,
-            y: spotY,
-            width: SPOT_SIZE,
-            height: SPOT_SIZE,
-            background: 'radial-gradient(circle, rgba(255,255,255,0.03), transparent 60%)',
-          }}
-        />
-      )}
-
-      {/* Main content */}
-      <div className="relative z-10 container mx-auto px-4 md:px-6 pt-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Avatar initials */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.23, 0.86, 0.39, 0.96] }}
-            className="mb-8 flex justify-center"
-          >
-            <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-white/5 border border-white/20 flex items-center justify-center text-2xl sm:text-3xl font-medium text-white font-mono shadow-[0_0_44px_rgba(255,255,255,0.1)] backdrop-blur-md">
-                DS
-              </div>
-              {/* Pulsing ring */}
-              <motion.div
-                className="absolute inset-0 rounded-full border border-white/10"
-                animate={{ scale: [1, 1.25, 1], opacity: [0.6, 0, 0.6] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+        <div
+          className="hero-stage hero-stage-in mx-auto mt-14 h-[var(--stage-h)] w-[min(1120px,calc(100vw-2.5rem))] full-motion:absolute full-motion:inset-x-0 full-motion:mt-0 full-motion:top-[calc(100svh-var(--stage-h)*var(--stage-y))]"
+        >
+          <div className="hero-rig relative h-full w-full will-change-transform">
+            <div className="photo-edge absolute inset-0 overflow-hidden rounded-[var(--hero-r)] bg-raised">
+              <Picture
+                photo="lakesideBg"
+                alt=""
+                sizes="(max-width: 767px) 92vw, 1120px"
+                priority
+                reveal={false}
+                className="hero-bg absolute inset-0"
+                imgClassName="object-[50%_45%]"
               />
+              <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.45),rgb(0_0_0/0)_45%)]" />
             </div>
-          </motion.div>
-
-          {/* Location badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.35 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] mb-6"
-          >
-            <motion.div
-              className="w-2 h-2 rounded-full bg-available"
-              animate={{ scale: [1, 1.3, 1], opacity: [1, 0.6, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <span className="text-sm text-muted-foreground tracking-wide">Dublin</span>
-          </motion.div>
-
-          {/* Name */}
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
-            className="text-5xl sm:text-7xl md:text-8xl font-bold mb-4 tracking-display font-display"
-          >
-            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/75">
-              Dániel Sajben
-            </span>
-          </motion.h1>
-
-          {/* Animated role */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="h-10 flex items-center justify-center mb-6"
-          >
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={roles[roleIdx]}
-                initial={{ opacity: 0, y: 16, filter: 'blur(4px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, y: -16, filter: 'blur(4px)' }}
-                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                className="text-xl sm:text-2xl md:text-3xl text-white/90 font-medium tracking-wide"
-              >
-                {roles[roleIdx]}
-              </motion.span>
-            </AnimatePresence>
-          </motion.div>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-base sm:text-lg text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto"
-          >
-            MSc AI student at UCD Dublin, B.Sc. at BME with First Class Honours. Specialising in
-            Deep Learning, Generative AI and AI for medicine.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-wrap items-center justify-center gap-4 mb-12"
-          >
-            <Magnetic disabled={!spotlightOn}>
-              <LiquidButton
-                size="xl"
-                className="text-copper-lite"
-                onClick={() =>
-                  document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
-                }
-              >
-                View My Work
-              </LiquidButton>
-            </Magnetic>
-            <Magnetic disabled={!spotlightOn}>
-              <LiquidButton
-                size="xl"
-                className="text-foreground/70"
-                onClick={() => window.open(asset('/SajbenDánielCV.pdf'), '_blank')}
-              >
-                Download CV
-              </LiquidButton>
-            </Magnetic>
-          </motion.div>
-
-          {/* Social links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.85 }}
-            className="flex items-center justify-center gap-3"
-          >
-            {socialLinks.map(({ icon: Icon, href, label }) => (
-              <motion.a
-                key={label}
-                href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                aria-label={label}
-                className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-content-tertiary hover:text-white transition-colors"
-                whileHover={{ scale: 1.15 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-              >
-                <Icon size={18} />
-              </motion.a>
-            ))}
-          </motion.div>
+            <div
+              className="absolute inset-0"
+              style={{ clipPath: 'inset(-60% 0 0 0 round 0 0 var(--hero-r) var(--hero-r))' }}
+            >
+              <div className="hero-fg absolute inset-x-0 bottom-0 mx-auto aspect-[3/4] h-[calc(var(--pop)*100%)] origin-bottom will-change-transform">
+                <Picture
+                  photo="lakesideFg"
+                  alt="Dániel Sajben, smiling, in a light grey suit by a lake at dusk."
+                  sizes="(max-width: 767px) 80vw, 560px"
+                  priority
+                  reveal={false}
+                  className="h-full w-full"
+                  imgClassName="object-contain object-bottom"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Scroll cue */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <ChevronDown size={24} />
-      </motion.div>
     </section>
   )
 }

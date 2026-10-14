@@ -1,65 +1,56 @@
-import { lazy, Suspense } from 'react'
-import { motion, useScroll, useSpring } from 'framer-motion'
-import SectionDivider from '@/components/shared/SectionDivider'
-import GrainOverlay from '@/components/shared/GrainOverlay'
-import ScrollToTop from '@/components/shared/ScrollToTop'
-import StatStrip from '@/components/shared/StatStrip'
-import Navbar from '@/components/layout/Navbar'
+import { useState } from 'react'
+import { chapters, type ChapterId } from '@/data/chapters'
+import { ScrollTrigger, useGSAP } from '@/lib/gsap'
+import { ToastProvider } from '@/components/ui/Toast'
+import TopBar from '@/components/layout/TopBar'
 import Footer from '@/components/layout/Footer'
 import Hero from '@/components/sections/Hero'
-import About from '@/components/sections/About'
-import Projects from '@/components/sections/Projects'
+import Credentials from '@/components/sections/Credentials'
+import Research from '@/components/sections/Research'
+import Work from '@/components/sections/Work'
+import Milestones from '@/components/sections/Milestones'
 import Experience from '@/components/sections/Experience'
-import Publications from '@/components/sections/Publications'
-import Skills from '@/components/sections/Skills'
+import Life from '@/components/sections/Life'
 import Contact from '@/components/sections/Contact'
 
-// Lazy-load the WebGL ambient scene so the hero paints before three.js loads.
-const AmbientScene = lazy(() => import('@/components/three/AmbientScene'))
-
 export default function App() {
-  const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.3 })
+  const [active, setActive] = useState<ChapterId>('hello')
+
+  // The active chapter is whichever section spans a line 45% down the viewport,
+  // read from live layout on every scroll update. Per-chapter triggers would
+  // measure their ends before the pins below them add spacing.
+  useGSAP(() => {
+    const els = chapters.map((c) => document.getElementById(c.id)).filter((el): el is HTMLElement => !!el)
+    let current = ''
+    const update = () => {
+      const line = window.innerHeight * 0.45
+      const hit = els.find((el) => {
+        const r = el.getBoundingClientRect()
+        return r.top <= line && r.bottom > line
+      })
+      if (hit && hit.id !== current) {
+        current = hit.id
+        setActive(hit.id as ChapterId)
+      }
+    }
+    ScrollTrigger.create({ start: 0, end: 'max', onUpdate: update, onRefresh: update })
+    update()
+  })
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-body overflow-x-clip">
-      <a href="#main" className="skip-link">
-        Skip to content
-      </a>
-
-      {/* Ambient 3D starfield — fixed, behind everything */}
-      <Suspense fallback={null}>
-        <AmbientScene className="fixed inset-0 z-0 opacity-70 pointer-events-none" />
-      </Suspense>
-      {/* Clean ambient vignette to anchor the top of the page */}
-      <div className="fixed inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,255,255,0.04),transparent_55%)]" />
-      {/* Film-grain texture above content, below progress bar */}
-      <GrainOverlay />
-
-      {/* Scroll progress bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] origin-left bg-gradient-to-r from-white/80 via-white/50 to-white/20 z-[60]"
-        style={{ scaleX }}
-      />
-
-      <div className="relative z-10">
-        <Navbar />
-        <main id="main" tabIndex={-1}>
-          <Hero />
-          <SectionDivider />
-          <StatStrip />
-          <About />
-          <Projects />
-          <SectionDivider flip />
-          <Experience />
-          <Publications />
-          <Skills />
-          <SectionDivider />
-          <Contact />
-        </main>
-        <Footer />
-        <ScrollToTop />
-      </div>
-    </div>
+    <ToastProvider>
+      <TopBar active={active} />
+      <main id="main" tabIndex={-1} className="outline-none">
+        <Hero />
+        <Credentials />
+        <Research />
+        <Work />
+        <Milestones />
+        <Experience />
+        <Life />
+        <Contact />
+      </main>
+      <Footer />
+    </ToastProvider>
   )
 }

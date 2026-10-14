@@ -1,24 +1,27 @@
-import type { Variants } from 'framer-motion'
+/**
+ * Media queries shared by every GSAP matchMedia branch, so motion and its
+ * reduced-motion fallback are always decided the same way.
+ *
+ * Dev-only: append `?motion=reduce` to preview the reduced-motion paths in a
+ * browser that cannot emulate the OS setting (CSS guards still follow the OS).
+ */
+const forceReduce =
+  import.meta.env.DEV &&
+  typeof window !== 'undefined' &&
+  new URLSearchParams(window.location.search).get('motion') === 'reduce'
 
-/** Shared easing — same curve the site already uses for entrances. */
-export const EASE_OUT = [0.4, 0, 0.2, 1] as const
+export const MQ = {
+  motion: forceReduce ? '(max-width: 0px)' : '(prefers-reduced-motion: no-preference)',
+  reduce: forceReduce ? '(min-width: 0px)' : '(prefers-reduced-motion: reduce)',
+  fine: '(hover: hover) and (pointer: fine)',
+  desktop: '(min-width: 1024px)',
+} as const
 
-export const DURATION = { fast: 0.35, base: 0.6, slow: 0.8 } as const
+/** GSAP eases mirroring the CSS motion tokens. */
+export const EASE = {
+  smoothOut: 'expo.out',
+  inOut: 'power2.inOut',
+} as const
 
-/** Standard once-only viewport trigger used across sections. */
-export const VIEWPORT_ONCE = { once: true, margin: '-60px' } as const
-
-export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: DURATION.base, ease: EASE_OUT } },
-}
-
-export const fadeIn: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: DURATION.base, ease: EASE_OUT } },
-}
-
-export const staggerContainer = (stagger = 0.12, delay = 0.1): Variants => ({
-  hidden: {},
-  visible: { transition: { staggerChildren: stagger, delayChildren: delay } },
-})
+/** Reduced-motion replacement for any movement: a short opacity fade (HIG). */
+export const REDUCED_FADE = 0.15

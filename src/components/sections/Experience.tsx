@@ -1,144 +1,144 @@
-import { useRef } from 'react'
-import { motion, useScroll, useSpring } from 'framer-motion'
-import { Briefcase, GraduationCap, FlaskConical, Download } from 'lucide-react'
-import { experiences } from '@/data/experience'
-import SectionHeading from '@/components/shared/SectionHeading'
-import GlassCard from '@/components/shared/GlassCard'
-import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useState } from 'react'
+import { roles, honours, type Role } from '@/data/experience'
+import { toolkit, spokenLanguages } from '@/data/skills'
 import { asset } from '@/lib/utils'
+import ChapterHeading from '@/components/ui/ChapterHeading'
+import ChipRow from '@/components/ui/ChipRow'
+import { ArrowLink } from '@/components/ui/ArrowLink'
 
-const typeIcon = {
-  work: Briefcase,
-  education: GraduationCap,
-  research: FlaskConical,
-}
-
-const typeColor = {
-  work: 'text-copper-lite bg-copper/12',
-  education: 'text-copper bg-copper/12',
-  research: 'text-copper-lite bg-bronze/20',
-}
-
-function TimelineItem({
-  exp,
-  index,
-  reduced,
-}: {
-  exp: (typeof experiences)[number]
-  index: number
-  reduced: boolean
-}) {
-  const Icon = typeIcon[exp.type]
-  const colorClass = typeColor[exp.type]
-
+function Chevron() {
   return (
-    <div className="relative" style={{ perspective: '900px' }}>
-      {/* Spine node */}
-      <div className="absolute -left-8 md:-left-9 top-5">
-        <motion.div
-          className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center ${colorClass}`}
-          initial={{ scale: 0 }}
-          whileInView={{
-            scale: 1,
-            boxShadow: [
-              '0 0 0px rgba(200,126,84,0)',
-              '0 0 14px rgba(200,126,84,0.45)',
-              '0 0 0px rgba(200,126,84,0)',
-            ],
-          }}
-          viewport={{ once: true }}
-          transition={{
-            scale: { delay: index * 0.05 + 0.2, type: 'spring', stiffness: 300, damping: 20 },
-            boxShadow: { duration: 2.6, repeat: Infinity, delay: index * 0.3, ease: 'easeInOut' },
-          }}
-        >
-          <Icon size={16} />
-        </motion.div>
-      </div>
-
-      {/* Card — swings in to face the viewer */}
-      <motion.div
-        initial={
-          reduced
-            ? { opacity: 0 }
-            : { opacity: 0, rotateY: -32, x: 28 }
-        }
-        whileInView={reduced ? { opacity: 1 } : { opacity: 1, rotateY: 0, x: 0 }}
-        viewport={{ once: true, margin: '-70px' }}
-        transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
-        style={{ transformPerspective: 900, transformOrigin: 'left center' }}
-      >
-        <GlassCard lift className="p-5">
-          <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
-            <div>
-              <h3 className="font-semibold text-content text-base">{exp.role}</h3>
-              <p className="text-copper text-sm">{exp.org}</p>
-            </div>
-            <div className="text-right text-xs text-content-tertiary">
-              <p className="font-mono">{exp.period}</p>
-              <p>{exp.location}</p>
-            </div>
-          </div>
-          <p className="text-sm text-content-tertiary leading-relaxed mb-3">{exp.description}</p>
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="flex flex-wrap gap-1.5 flex-1">
-              {exp.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2 py-0.5 rounded text-xs font-mono text-content-tertiary bg-white/[0.04] border border-white/[0.07]"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            {exp.pdf && (
-              <a
-                href={asset(exp.pdf)}
-                download
-                className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono text-copper bg-copper/[0.08] border border-copper/25 hover:bg-copper/[0.15] transition-colors flex-shrink-0"
-              >
-                <Download size={12} />
-                {exp.pdfLabel ?? 'Download'}
-              </a>
-            )}
-          </div>
-        </GlassCard>
-      </motion.div>
-    </div>
+    <span className="t-acc-chevron text-label-2" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 6l4 4 4-4" />
+      </svg>
+    </span>
   )
 }
 
+function RoleRow({ role, open, onToggle }: { role: Role; open: boolean; onToggle: () => void }) {
+  const panelId = `role-${role.id}`
+  return (
+    <li className="t-acc border-b border-hairline last:border-b-0" data-open={open}>
+      <h3>
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={onToggle}
+          className="grid w-full grid-cols-[minmax(0,1fr)_auto] items-start gap-x-6 gap-y-1 py-6 text-left md:grid-cols-[11rem_minmax(0,1fr)_auto] md:gap-x-10 md:py-8"
+        >
+          <span className="tabular order-2 col-span-2 text-[0.9375rem] text-label-2 md:order-none md:col-span-1 md:pt-2">
+            {role.period}
+          </span>
+          <span className="order-1 md:order-none">
+            <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="text-[clamp(1.25rem,1rem+1vw,1.75rem)] font-semibold leading-tight tracking-[-0.02em] text-label">
+                {role.role}
+              </span>
+              {role.current && (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-raised-3 px-2.5 py-0.5 text-[0.8125rem] font-semibold text-label">
+                  <span className="h-1.5 w-1.5 rounded-full bg-live" aria-hidden="true" />
+                  Now
+                </span>
+              )}
+            </span>
+            <span className="mt-1 block text-label-2">
+              {role.org} · {role.location}
+            </span>
+          </span>
+          <span className="order-1 pt-1.5 md:order-none md:pt-2">
+            <Chevron />
+          </span>
+        </button>
+      </h3>
+      <div id={panelId} className="t-acc-panel">
+        <div className="t-acc-panel-inner">
+          <div className="pb-8 md:pl-[13.5rem]">
+            <ul className="max-w-[68ch] space-y-3">
+              {role.points.map((p) => (
+                <li key={p} className="relative pl-5 text-label before:absolute before:left-0 before:top-[0.7em] before:h-1 before:w-1 before:rounded-full before:bg-label-3">
+                  {p}
+                </li>
+              ))}
+            </ul>
+            <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Skills used">
+              {role.tags.map((t) => (
+                <li key={t} className="rounded-full bg-raised-2 px-2.5 py-0.5 text-[0.8125rem] text-label-2">
+                  {t}
+                </li>
+              ))}
+            </ul>
+            {role.link && (
+              <ArrowLink href={asset(role.link.href)} target="_blank" rel="noopener" className="mt-3">
+                {role.link.label}
+              </ArrowLink>
+            )}
+          </div>
+        </div>
+      </div>
+    </li>
+  )
+}
+
+/** Chapter "Experience": hairline accordion rows (transitions.dev accordion), honours, toolkit. */
 export default function Experience() {
-  const ref = useRef<HTMLDivElement>(null)
-  const reduced = useReducedMotion()
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start 75%', 'end 65%'],
-  })
-  const fill = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.4 })
+  const [open, setOpen] = useState<Set<string>>(() => new Set(['ucd', 'ericsson']))
+  const toggle = (id: string) =>
+    setOpen((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
 
   return (
-    <section id="experience" className="py-24 px-4 md:px-6 max-w-6xl mx-auto">
-      <SectionHeading
-        index="03"
-        plain="Experience &"
-        accent="Education"
-        subtitle="My professional journey so far"
+    <section id="experience" className="mx-auto max-w-[1240px] px-5 py-[clamp(6rem,12vw,10rem)] md:px-8">
+      <ChapterHeading
+        title="Experience."
+        muted="Research labs, an investment bank and a product with 100K+ users."
       />
 
-      <div ref={ref} className="relative max-w-3xl mx-auto">
-        {/* Spine track */}
-        <div className="absolute left-4 md:left-5 top-0 bottom-0 w-px bg-white/[0.08]" />
-        {/* Spine fill — draws in with scroll (echo of the star-pole) */}
-        <motion.div
-          className="absolute left-4 md:left-5 top-0 bottom-0 w-px origin-top bg-gradient-to-b from-copper-lite via-copper to-bronze shadow-[0_0_10px_rgba(200,126,84,0.5)]"
-          style={{ scaleY: reduced ? 1 : fill }}
-        />
-
-        <div className="space-y-6 pl-11 md:pl-14">
-          {experiences.map((exp, i) => (
-            <TimelineItem key={exp.id} exp={exp} index={i} reduced={reduced} />
+      <div className="mt-14 rounded-stage bg-raised px-5 py-2 md:mt-20 md:px-10 md:py-4">
+        <ol>
+          {roles.map((r) => (
+            <RoleRow key={r.id} role={r} open={open.has(r.id)} onToggle={() => toggle(r.id)} />
           ))}
+        </ol>
+      </div>
+
+      <div className="mt-24 grid gap-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+        <div>
+          <h3 className="text-title font-bold tracking-[-0.02em]">Honours</h3>
+          <ul className="mt-8">
+            {honours.map((h) => (
+              <li key={h} className="border-t border-hairline py-5 text-[1.125rem] text-label">
+                {h}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-title font-bold tracking-[-0.02em]">Toolkit</h3>
+          <div className="mt-8 space-y-7">
+            {toolkit.map((g) => (
+              <div key={g.group}>
+                <p className="mb-3 text-[0.9375rem] font-semibold text-label-2">{g.group}</p>
+                <ChipRow items={g.items} />
+              </div>
+            ))}
+            <div>
+              <p className="mb-3 text-[0.9375rem] font-semibold text-label-2">Spoken</p>
+              <ul className="flex flex-wrap gap-x-8 gap-y-2">
+                {spokenLanguages.map((l) => (
+                  <li key={l.name}>
+                    <span className="text-label">{l.name}</span>
+                    <span className="text-label-2"> · {l.level}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,94 +1,121 @@
-export interface Experience {
+export interface Role {
   id: string
   role: string
   org: string
   period: string
   location: string
-  description: string
+  kind: 'work' | 'research' | 'education'
+  current?: boolean
+  points: string[]
   tags: string[]
-  type: 'work' | 'education' | 'research'
-  pdf?: string
-  pdfLabel?: string
+  link?: { label: string; href: string }
 }
 
-export const experiences: Experience[] = [
+/** Source: DanielSajben_CV.pdf (Oct 2026) and the owner's cover letter. */
+export const roles: Role[] = [
   {
     id: 'ucd',
     role: 'MSc Advanced Artificial Intelligence',
     org: 'University College Dublin',
-    period: '2026 – 2027',
-    location: 'Dublin, Ireland',
-    description:
-      'MSc in Advanced Artificial Intelligence at University College Dublin (top 100 globally). Focus on key ML algorithms, time series forecasting, recommendation systems, optimization, deep learning for computer vision, and overall AI/ML.',
-    tags: ['AI', 'Deep Learning', 'NLP', 'Foundation Models'],
-    type: 'education',
+    period: 'Sep 2026 – Aug 2027',
+    location: 'Dublin',
+    kind: 'education',
+    current: true,
+    points: [
+      'Full-tuition scholarship.',
+      'Deep learning for vision, time-series forecasting, recommender systems and optimisation.',
+      'Member of the UCD Mathematics Society.',
+    ],
+    tags: ['Deep learning', 'Optimisation', 'Forecasting'],
   },
   {
-    id: 'ptc-hungary',
+    id: 'ericsson',
+    role: 'AI Research Intern',
+    org: 'BME × Ericsson',
+    period: 'Feb – Aug 2026',
+    location: 'Budapest · part-time',
+    kind: 'research',
+    points: [
+      'Built tool-grounded LLM workflows on locally hosted open-weight models for semantic validation of telecom graphs; first-author paper at IEEE CAMAD 2026.',
+      'Built a pipeline of 2K+ synthetic XML graphs for GNN and GAN training.',
+      'Presented the findings to a global engineering team and led the demo at AI Summit Budapest 2026.',
+    ],
+    tags: ['LLM agents', 'GNN', 'Synthetic data'],
+  },
+  {
+    id: 'ptc',
     role: 'Data Science & AI Engineer Intern',
-    org: 'PTC Hungary',
-    period: 'Mar 2026 – Jul 2026',
-    location: 'Budapest, Hungary',
-    description:
-      'Building AI-powered agentic pipelines at PTC Hungary. Developing an MCP server and an LLM-based AI agent for Codebeamer.',
-    tags: ['Python', 'PyTorch', 'LLM', 'AI Agents', 'Data Science'],
-    type: 'work',
+    org: 'PTC',
+    period: 'Mar – Jun 2026',
+    location: 'Budapest · part-time',
+    kind: 'work',
+    points: [
+      'Built an agentic RAG system in LangGraph and FastMCP with HyDE embeddings, query rewriting and decomposition, raising answer relevance on the internal evaluation set.',
+      'Took an MCP service from design to production on AWS (Docker, Linux), integrated with Microsoft 365 Copilot Studio.',
+      'Contributed to customer-facing Codebeamer AI features used by 100K+ users; the contract was extended for this work.',
+    ],
+    tags: ['LangGraph', 'MCP', 'RAG', 'AWS'],
   },
   {
-    id: 'anthropic-cert',
-    role: 'Build with Claude API & MCP Advanced Topics — Certified',
-    org: 'Anthropic',
-    period: '2026',
-    location: 'Remote',
-    description:
-      "Completed Anthropic's Build with Claude API and MCP Advanced Topics certifications, demonstrating proficiency in integrating Claude models and building Model Context Protocol servers for AI agents.",
-    tags: ['Claude API', 'MCP', 'LLM', 'AI Agents', 'Anthropic'],
-    type: 'education',
+    id: 'neuroimaging',
+    role: 'Research Assistant, Neuroimaging',
+    org: 'Budapest University of Technology and Economics',
+    period: 'Jan 2025 – Aug 2026',
+    location: 'Budapest',
+    kind: 'research',
+    points: [
+      'Trained a latent diffusion model in PyTorch for fMRI super-resolution and data augmentation; won an award at the Scientific Students’ Conference (TDK) in 2025.',
+      'Developed a harmonisation pipeline that removes scanner effects across sites; the first-author manuscript is in submission at Medical Image Analysis.',
+    ],
+    tags: ['PyTorch', 'Diffusion models', 'fMRI'],
   },
   {
     id: 'tum',
-    role: 'Exchange Student — AI & Deep Learning',
-    org: 'Technical University of Munich (TUM)',
-    period: '2025',
-    location: 'Munich, Germany',
-    description:
-      'Semester exchange focused on AI in medicine, tabular foundation models, and GNN/LLM hybrid architectures. Achieved GPA 1.3 / 5.0 (German scale, best = 1.0). Presented survival analysis research at a departmental symposium.',
-    tags: ['Deep Learning', 'Computer Vision', 'GPA 1.3/5.0', 'Research'],
-    type: 'education',
-  },
-  {
-    id: 'thesis',
-    role: 'Research — fMRI Super-Resolution',
-    org: 'Budapest University of Technology',
-    period: 'Jan 2025 – Present',
-    location: 'Budapest, Hungary',
-    description:
-      'Master thesis applying Latent Diffusion Models to fMRI brain scan super-resolution and synthetic data generation. Collaborating with neuroscience researchers to improve neuroimaging data quality.',
-    tags: ['Python', 'PyTorch', 'Diffusion Models', 'Generative AI', 'Neuroimaging'],
-    type: 'research',
+    role: 'Exchange semester, Computer Science & Medical AI',
+    org: 'Technical University of Munich',
+    period: 'Oct 2025 – Mar 2026',
+    location: 'Munich · Erasmus+',
+    kind: 'education',
+    points: [
+      'GPA 1.3 on the German scale, where 1.0 is the best grade.',
+      'Research on tabular foundation models for medical prognosis, presented as a poster at the TUM Medical AI Conference.',
+    ],
+    tags: ['Medical AI', 'Survival analysis'],
+    link: { label: 'Read the report', href: '/papers/tum-tabular-foundation-models-report.pdf' },
   },
   {
     id: 'morgan-stanley',
-    role: 'Full-Stack Software Developer',
+    role: 'Software Engineer Intern, Institutional Securities',
     org: 'Morgan Stanley',
-    period: 'Mar 2025 – Aug 2025',
-    location: 'Budapest, Hungary',
-    description:
-      'Data-science-driven developer at Morgan Stanley Budapest. Designed and built end-to-end usage tracking systems serving 1,000+ users; created a custom Kibana dashboard to analyse usage trends, proposed UX improvements and validated them with A/B testing. Complemented with SQL optimisation and Java Spring Boot API endpoint integrations across the trading platform.',
-    tags: ['Java Spring', 'Angular', 'SQL', 'Kibana', 'A/B Testing', 'TypeScript'],
-    type: 'work',
+    period: 'Apr – Aug 2025',
+    location: 'Budapest · full-time',
+    kind: 'work',
+    points: [
+      'Shipped production Java services and full-stack tools (Spring Boot, Angular) used by 1K+ internal users.',
+      'Decided which UI changes to keep with A/B tests on Kibana telemetry, and shared the results with a cross-functional team.',
+      'Cut response times under load by optimising SQL on financial-data workflows; demoed AI-assisted development with Claude to the team.',
+    ],
+    tags: ['Java', 'Spring Boot', 'Angular', 'SQL'],
   },
   {
     id: 'bme',
-    role: 'B.Sc. Computer Science Engineering',
+    role: 'BSc Computer Science Engineering',
     org: 'Budapest University of Technology and Economics',
-    period: '2022 – 2026',
-    location: 'Budapest, Hungary',
-    description:
-      'Bachelor of Science in Computer Science Engineering with First Class Honours (1:1). GPA 4.65 / 5.00. Specialisation in Machine Learning and Software Development. TDK Award recipient (Hungarian national student research competition).',
-    tags: ['Computer Science', 'Machine Learning', 'GPA 4.65/5.00', 'First Class Honours'],
-    type: 'education',
-    pdf: '/thesis.pdf',
-    pdfLabel: 'Download Thesis',
+    period: 'Sep 2022 – Jan 2026',
+    location: 'Budapest',
+    kind: 'education',
+    points: [
+      'First Class Honours, GPA 4.61 / 5.00.',
+      'Thesis: latent diffusion models for fMRI super-resolution and synthetic data generation.',
+    ],
+    tags: ['Machine learning', 'Software engineering'],
+    link: { label: 'Read the thesis', href: '/thesis.pdf' },
   },
+]
+
+export const honours = [
+  'First-author paper at IEEE CAMAD 2026',
+  'Award at the Scientific Students’ Conference (TDK), 2025',
+  'Finalist, PwC AI Hackathon 2026, Hungary',
+  'Anthropic certified: Building with the Claude API and MCP Advanced Topics',
 ]

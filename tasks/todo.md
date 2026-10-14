@@ -1,5 +1,31 @@
 # Portfolio Upgrade — Todo
 
+## Phase 8 — Full redesign "Keynote Stage" (2026-10-13/14) — built, reviewed, documented; awaiting owner
+Brief: cleaner/pro, dynamic, smooth, mobile+desktop, far more personal (own photos with drone-like 3D scroll motion), composer1.com layouts/motion, transitions.dev components, GSAP, make-interfaces-feel-better, Apple HIG. NOT deployed, NOT pushed.
+
+Done:
+- [x] Interview + PRODUCT.md; direction round → owner chose "Keynote Stage" (surface brief: .impeccable/surfaces/index-html.md)
+- [x] Stack: React 18 + Vite + TS + Tailwind v4 kept; framer-motion, three/R3F/drei, use-gesture, radix-slot, cva removed; gsap 3.15 (ScrollTrigger, ScrollSmoother, SplitText, Flip) + @gsap/react + self-hosted Inter Variable added. JS ≈138 KB gz.
+- [x] ScrollSmoother created in main.tsx before React (fine pointer + motion only); fixed UI portals into #overlay-root (first in tab order); <html data-motion> drives Tailwind `reduced:`/`full-motion:` variants; dev-only `?motion=reduce`
+- [x] Chapters: Hero (2.5D portrait: rembg cut-out + inpainted plate, pinned drone dolly/orbit), Credentials strip, Research (pinned index; CAMAD published w/ real results table + PDF; MedIA submission blurred; survey), Work (sliding filter tabs + Flip, tilt cards, video modal), Milestones (pinned CSS-3D drone flight through 6 event photos, snapping stations; list fallback), Experience (accordion rows from Oct-2026 CV, honours, toolkit), Off the clock (interests + poker odds flip), Contact (copy email icon swap + toast)
+- [x] Dynamic Island nav (chapter label swap, reading progress, dropdown menu); glass only on floating controls
+- [x] Facts updated from CV: GPA 4.61, PTC Mar–Jun 2026, BME×Ericsson Feb–Aug 2026, Morgan Stanley Apr–Aug 2025; CAMAD title "Mind the Semantic Gap…" (Sajben, Toka); new CV public/DanielSajben_CV.pdf (old CV removed); paper at public/papers/
+- [x] Verified in browser: desktop 1440 + mobile 375/390, no horizontal overflow, island nav/focus/hash, filter+Flip, accordion, poker, modal (inert, Esc, focus return, smoother paused), reduced-motion path; build passes; detector 0 findings (2 sanctioned transitions.dev easing exceptions); 79 rasters carry provenance; new og-image.jpg
+- [x] Fixes found in verification: unlayered recipe CSS beat utilities (moved to @layer components); tailwind-merge dropped custom text tokens (extendTailwindMerge); GSAP vs Tailwind translate conflict; lakeside inpaint halo → single image; mobile station dots; Vite watch ignores tool dirs
+
+- [x] Finish review round 1 (recapture → fix 8 items) and round 2 verdict: 6 resolved, 2 partial; then fixed hero framing + 2 regressions (credential gutter, duplicate fMRI status)
+- [x] Work imagery = owner artefacts only (AI Summit, TUM poster, thesis SR slices, self-driving demo frame); rest listed without image; survey Figure 1 in Research; all stock banners deleted
+- [x] DESIGN.md + .impeccable/design.json written by documenter (validated); its flagged defects fixed (focus ring radius, hero clip radius, card-red token, off-scale values, 44px coarse tabs); detector 0 findings with DESIGN.md drift checks on
+- [x] Graph rebuilt via MCP (new files index after commit)
+
+- [x] Owner feedback 2026-10-14: TUM report wired in (Work card + TUM experience row, public/papers/tum-tabular-foundation-models-report.pdf); pointer cursor on all buttons/tabs (Tailwind v4 preflight resets it); "More projects" links fixed (the closed island dropdown's wrapper was catching clicks → pointer-events-none); OTDK → TDK (not national); hero ↔ Off-the-clock photos swapped (lakeside now the 2.5D hero, new blurred plate; studio portrait in Life); title second line "Enthusiastic about AI research."; filter-tab jump fixed (grid height held + eased during Flip, in-flight flips settled); telecom card uses the CAMAD presentation photo
+
+Open (owner decisions):
+- [ ] Confirm the Research/Work "no stage panel" exception (cards inside panels = nested cards) or ask for panels anyway
+- [ ] Optional third finish-review round
+- [ ] Keep hosting the CAMAD PDF? Cities list in Contact still current?
+- [ ] Commit; deploy/push ONLY when the owner says so
+
 ## Phase 7 — Real banner images in the showcase (user follow-up 2026-06-10)
 User: generated artwork looks too similar between projects on the laptop screen → replace with professional, clean, modern, topic-matched banner photos.
 - [x] Downloaded 22 candidates; visually reviewed EVERY one; rejected off-topic hits (plastic anatomy models, hand X-ray, surgeons, coffee roaster — the original repo's "self-driving" Unsplash ID was actually a coffee roaster). Final picks: fMRI activation figure (Wikimedia/PLoS, CC BY 4.0, Miller et al. 2014), night wildfire, b&w stethoscope, Earth at night, plexus network, white Tesla on mountain road, fluorescence microscopy cells, barbell lift, circuit macro — all Unsplash License except the fMRI one

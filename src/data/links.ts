@@ -1,0 +1,5 @@
+export const EMAIL = 'sajben.dani@gmail.com'
+export const GITHUB = 'https://github.com/SajbenDani'
+export const LINKEDIN = 'https://www.linkedin.com/in/d%C3%A1nielsajben/'
+export const CV = '/DanielSajben_CV.pdf'
+export const CAMAD_PAPER = '/papers/camad-2026-mind-the-semantic-gap.pdf'

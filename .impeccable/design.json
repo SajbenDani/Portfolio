@@ -1,0 +1,573 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-13T21:00:57.593Z",
+  "title": "Design System: Dániel Sajben Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "stage": {
+        "role": "neutral",
+        "displayName": "Stage Black",
+        "canonical": "#000000",
+        "tonalRamp": [
+          "oklch(15% 0.004 286)",
+          "oklch(22.7% 0.004 286)",
+          "oklch(29.4% 0.004 286)",
+          "oklch(34.9% 0.003 286)",
+          "oklch(40.2% 0.003 286)",
+          "oklch(60% 0.004 286)",
+          "oklch(80% 0.004 286)",
+          "oklch(97.1% 0.003 286)"
+        ]
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "canonical": "#1c1c1e",
+        "tonalRamp": [
+          "oklch(15% 0.004 286)",
+          "oklch(22.7% 0.004 286)",
+          "oklch(29.4% 0.004 286)",
+          "oklch(34.9% 0.003 286)",
+          "oklch(40.2% 0.003 286)",
+          "oklch(60% 0.004 286)",
+          "oklch(80% 0.004 286)",
+          "oklch(97.1% 0.003 286)"
+        ]
+      },
+      "raised-2": {
+        "role": "neutral",
+        "displayName": "Graphite 2",
+        "canonical": "#2c2c2e",
+        "tonalRamp": [
+          "oklch(15% 0.004 286)",
+          "oklch(22.7% 0.004 286)",
+          "oklch(29.4% 0.004 286)",
+          "oklch(34.9% 0.003 286)",
+          "oklch(40.2% 0.003 286)",
+          "oklch(60% 0.004 286)",
+          "oklch(80% 0.004 286)",
+          "oklch(97.1% 0.003 286)"
+        ]
+      },
+      "raised-3": {
+        "role": "neutral",
+        "displayName": "Graphite 3",
+        "canonical": "#3a3a3c",
+        "tonalRamp": [
+          "oklch(15% 0.004 286)",
+          "oklch(22.7% 0.004 286)",
+          "oklch(29.4% 0.004 286)",
+          "oklch(34.9% 0.003 286)",
+          "oklch(40.2% 0.003 286)",
+          "oklch(60% 0.004 286)",
+          "oklch(80% 0.004 286)",
+          "oklch(97.1% 0.003 286)"
+        ]
+      },
+      "label": {
+        "role": "neutral",
+        "displayName": "Label White",
+        "canonical": "#f5f5f7",
+        "tonalRamp": [
+          "oklch(15% 0.004 286)",
+          "oklch(22.7% 0.004 286)",
+          "oklch(29.4% 0.004 286)",
+          "oklch(34.9% 0.003 286)",
+          "oklch(40.2% 0.003 286)",
+          "oklch(60% 0.004 286)",
+          "oklch(80% 0.004 286)",
+          "oklch(97.1% 0.003 286)"
+        ]
+      },
+      "label-2": {
+        "role": "neutral",
+        "displayName": "Secondary Label",
+        "canonical": "rgb(235 235 245 / 0.64)",
+        "highContrast": "rgb(235 235 245 / 0.82)",
+        "tonalRamp": [
+          "rgb(235 235 245 / 0.12)",
+          "rgb(235 235 245 / 0.24)",
+          "rgb(235 235 245 / 0.36)",
+          "rgb(235 235 245 / 0.42)",
+          "rgb(235 235 245 / 0.52)",
+          "rgb(235 235 245 / 0.64)",
+          "rgb(235 235 245 / 0.82)",
+          "rgb(235 235 245 / 0.95)"
+        ],
+        "note": "Translucent overlay on the black stage; the ramp steps alpha."
+      },
+      "label-3": {
+        "role": "neutral",
+        "displayName": "Tertiary Label",
+        "canonical": "rgb(235 235 245 / 0.42)",
+        "highContrast": "rgb(235 235 245 / 0.64)",
+        "tonalRamp": [
+          "rgb(235 235 245 / 0.12)",
+          "rgb(235 235 245 / 0.24)",
+          "rgb(235 235 245 / 0.36)",
+          "rgb(235 235 245 / 0.42)",
+          "rgb(235 235 245 / 0.52)",
+          "rgb(235 235 245 / 0.64)",
+          "rgb(235 235 245 / 0.82)",
+          "rgb(235 235 245 / 0.95)"
+        ],
+        "note": "Translucent overlay on the black stage; the ramp steps alpha."
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgb(255 255 255 / 0.12)",
+        "highContrast": "rgb(255 255 255 / 0.28)",
+        "tonalRamp": [
+          "rgb(255 255 255 / 0.12)",
+          "rgb(255 255 255 / 0.24)",
+          "rgb(255 255 255 / 0.36)",
+          "rgb(255 255 255 / 0.42)",
+          "rgb(255 255 255 / 0.52)",
+          "rgb(255 255 255 / 0.64)",
+          "rgb(255 255 255 / 0.82)",
+          "rgb(255 255 255 / 0.95)"
+        ],
+        "note": "Translucent overlay on the black stage; the ramp steps alpha."
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Link Blue",
+        "canonical": "oklch(66.9% 0.181 251.8)",
+        "hex": "#2997ff",
+        "tonalRamp": [
+          "oklch(15% 0.050 251.8)",
+          "oklch(26.4% 0.090 251.8)",
+          "oklch(37.9% 0.130 251.8)",
+          "oklch(49.3% 0.165 251.8)",
+          "oklch(60.7% 0.181 251.8)",
+          "oklch(72.1% 0.150 251.8)",
+          "oklch(83.6% 0.090 251.8)",
+          "oklch(95% 0.030 251.8)"
+        ]
+      },
+      "accent-fill": {
+        "role": "primary",
+        "displayName": "Action Blue",
+        "canonical": "oklch(56.3% 0.193 256.2)",
+        "hex": "#0071e3",
+        "tonalRamp": [
+          "oklch(15% 0.060 256.2)",
+          "oklch(26.4% 0.105 256.2)",
+          "oklch(37.9% 0.150 256.2)",
+          "oklch(49.3% 0.185 256.2)",
+          "oklch(60.7% 0.180 256.2)",
+          "oklch(72.1% 0.140 256.2)",
+          "oklch(83.6% 0.085 256.2)",
+          "oklch(95% 0.028 256.2)"
+        ]
+      },
+      "accent-fill-hover": {
+        "role": "primary",
+        "displayName": "Action Blue Hover",
+        "canonical": "oklch(58.3% 0.199 256)",
+        "hex": "#0077ed",
+        "tonalRamp": [
+          "oklch(15% 0.060 256.2)",
+          "oklch(26.4% 0.105 256.2)",
+          "oklch(37.9% 0.150 256.2)",
+          "oklch(49.3% 0.185 256.2)",
+          "oklch(60.7% 0.180 256.2)",
+          "oklch(72.1% 0.140 256.2)",
+          "oklch(83.6% 0.085 256.2)",
+          "oklch(95% 0.028 256.2)"
+        ]
+      },
+      "live": {
+        "role": "primary",
+        "displayName": "Live Status",
+        "canonical": "oklch(66.9% 0.181 251.8)",
+        "hex": "#2997ff",
+        "tonalRamp": [
+          "oklch(15% 0.050 251.8)",
+          "oklch(26.4% 0.090 251.8)",
+          "oklch(37.9% 0.130 251.8)",
+          "oklch(49.3% 0.165 251.8)",
+          "oklch(60.7% 0.181 251.8)",
+          "oklch(72.1% 0.150 251.8)",
+          "oklch(83.6% 0.090 251.8)",
+          "oklch(95% 0.030 251.8)"
+        ],
+        "note": "Same value as Link Blue by rule: status speaks the one accent."
+      },
+      "glass": {
+        "role": "neutral",
+        "displayName": "Glass Graphite",
+        "canonical": "rgb(28 28 30 / 0.72)",
+        "tonalRamp": [
+          "oklch(15% 0.004 286)",
+          "oklch(22.7% 0.004 286)",
+          "oklch(29.4% 0.004 286)",
+          "oklch(34.9% 0.003 286)",
+          "oklch(40.2% 0.003 286)",
+          "oklch(60% 0.004 286)",
+          "oklch(80% 0.004 286)",
+          "oklch(97.1% 0.003 286)"
+        ],
+        "note": "Only under backdrop-filter: blur(20px) saturate(180%); solid #1c1c1e under reduced transparency or increased contrast."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The hero headline only: name line plus a muted clause."
+      },
+      "headline": {
+        "displayName": "Chapter Headline",
+        "purpose": "Every chapter heading, max 18ch, with a muted second clause and no eyebrow."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Subsection heads, mobile paper titles, the milestone caption title."
+      },
+      "title-card": {
+        "displayName": "Card Title",
+        "purpose": "Project-card and milestone-list titles; rows step down to 1.25rem."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Paragraph under a chapter heading (46ch) and paper summaries."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All reading text at the 17px iOS base; prose lists to 68ch."
+      },
+      "label": {
+        "displayName": "Control Label",
+        "purpose": "Buttons, the Dynamic Island, filter tabs, table captions."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Periods, captions, chips, footer."
+      },
+      "caption": {
+        "displayName": "Tag",
+        "purpose": "Tags and table column heads."
+      }
+    },
+    "shadows": [
+      {
+        "name": "floating-glass",
+        "value": "inset 0 0 0 1px rgb(255 255 255 / 0.08), 0 8px 24px -8px rgb(0 0 0 / 0.6)",
+        "purpose": "With backdrop-filter: blur(20px) saturate(180%) over rgb(28 28 30 / 0.72). Floating controls only: top-bar pills, Dynamic Island and menu, toast, modal close."
+      },
+      {
+        "name": "photo-edge",
+        "value": "inset 0 0 0 1px rgb(255 255 255 / 0.1)",
+        "purpose": "Inner 1px line on every framed photograph so dark images hold their edge on black. An edge, not an elevation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-smooth-out",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Default CSS easing for every transitions.dev recipe, the press scale and the island width."
+      },
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "CSS mirror of GSAP's default 'expo.out'."
+      },
+      {
+        "name": "gsap-default",
+        "value": "ease: 'expo.out', duration: 0.8",
+        "purpose": "gsap.defaults for every tween not otherwise tuned."
+      },
+      {
+        "name": "duration-scale",
+        "value": "40 / 80 / 150 / 250 / 350 / 400 / 500ms",
+        "purpose": "--duration-stagger, micro, quick, fast, medium, slow, very-slow."
+      },
+      {
+        "name": "press",
+        "value": "scale(0.96), 160ms ease-smooth-out",
+        "purpose": "Pressed state of every pill button."
+      },
+      {
+        "name": "text-swap",
+        "value": "150ms ease-in-out, 4px rise, 2px blur",
+        "purpose": "Island chapter label and milestone captions."
+      },
+      {
+        "name": "menu-dropdown",
+        "value": "open 250ms / close 150ms, from scale 0.97, ease-smooth-out",
+        "purpose": "Island menu from top-center."
+      },
+      {
+        "name": "modal",
+        "value": "open 250ms / close 150ms, scale 0.96, ease-smooth-out",
+        "purpose": "Video modal."
+      },
+      {
+        "name": "toast",
+        "value": "in 350ms / out 250ms, 16px rise, 2px blur, scale 0.97",
+        "purpose": "Copy-email confirmation; auto-hides after 2.4s."
+      },
+      {
+        "name": "tabs-slide",
+        "value": "250ms ease-smooth-out",
+        "purpose": "Filter-tab pill travel."
+      },
+      {
+        "name": "card-tilt",
+        "value": "max 6deg, perspective 1000px, follow 400ms, return 1000ms, glare 0.22",
+        "purpose": "Project cards, fine pointers only."
+      },
+      {
+        "name": "accordion",
+        "value": "250ms grid-template-rows 0fr to 1fr, 2px blur, chevron scaleY(-1)",
+        "purpose": "Experience rows."
+      },
+      {
+        "name": "chip-lift",
+        "value": "-4px lift, 1.05 scale, 0.45 falloff, 320ms; return cubic-bezier(0.34, 3.85, 0.64, 1)",
+        "purpose": "Toolkit chips, fine pointers only."
+      },
+      {
+        "name": "number-pop",
+        "value": "500ms, 8px, 70ms stagger, cubic-bezier(0.34, 1.45, 0.64, 1)",
+        "purpose": "Result figures entering view."
+      },
+      {
+        "name": "skeleton-reveal",
+        "value": "pulse 1000ms to 0.5; reveal 400ms, 2px blur",
+        "purpose": "Photographs while they stream in."
+      },
+      {
+        "name": "shimmer",
+        "value": "2400ms linear, white band over 64% label",
+        "purpose": "The under-review status line only."
+      },
+      {
+        "name": "chapter-heading-reveal",
+        "value": "SplitText lines, y 12px, blur 3px, 0.6s, stagger 0.06, 'expo.out', once at top 88%",
+        "purpose": "Every chapter heading when motion is allowed."
+      },
+      {
+        "name": "hero-dolly",
+        "value": "pin, scrub 0.6, +=115% (85% phones); rotateX 10 to 0, scale 0.92 to 1, then rotateY -6deg (-4deg)",
+        "purpose": "Hero camera push-in and orbit; backdrop and cut-out scale in opposite directions."
+      },
+      {
+        "name": "milestones-flight",
+        "value": "pin, scrub 0.8, (N-1)*85% (75% phones); z gap 1500px (1150px); turn 12deg (8deg); glide 0.35 linear + 0.65 sine.inOut; snap 0.25-0.7s 'power2.inOut'",
+        "purpose": "Drone flight through six milestone photos; captions stay 2D."
+      },
+      {
+        "name": "scroll-drift",
+        "value": "credentials xPercent 0 to -38, scrub 0.4; life portrait scale 1.12 to 1, scrub 0.6",
+        "purpose": "Small scroll-linked moves that follow the visitor input only."
+      },
+      {
+        "name": "flip-filter",
+        "value": "Flip 0.6s 'expo.out'; enter scale 0.96 0.45s; leave 0.25s 'power2.out'",
+        "purpose": "Work grid re-layout on filter change."
+      },
+      {
+        "name": "smooth-scroll",
+        "value": "ScrollSmoother smooth: 1, effects off",
+        "purpose": "Fine pointer with motion allowed only; touch and reduced motion keep native scroll."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "<html data-motion=\"reduce\">; reduced: / full-motion: variants; REDUCED_FADE 0.15s",
+        "purpose": "One switch for CSS and GSAP; every reduced path is a complete static layout."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px",
+        "note": "Hero and flight switch to desktop camera values; top-bar side pills appear."
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "note": "MQ.desktop: 5:7 splits, research index pin."
+      },
+      {
+        "name": "fine-pointer",
+        "value": "(hover: hover) and (pointer: fine)",
+        "note": "Tilt, chip lift, ScrollSmoother."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "(prefers-reduced-motion: reduce)"
+      },
+      {
+        "name": "reduced-transparency",
+        "value": "(prefers-reduced-transparency: reduce), (prefers-contrast: more)",
+        "note": "Glass turns solid graphite."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Filled Action Blue pill with a white label; the one filled action in a group.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Get in touch</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; height: 2.75rem; padding: 0 1.25rem; border: 0; border-radius: 9999px; font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, \"Inter Variable\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif); font-size: 0.9375rem; font-weight: 600; white-space: nowrap; cursor: pointer; transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1), background-color 160ms ease, color 160ms ease; background: var(--color-accent-fill, #0071e3); color: #ffffff; } .ds-btn-primary:hover { background: var(--color-accent-fill-hover, #0077ed); } .ds-btn-primary:active { transform: scale(0.96); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-accent, #2997ff); outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Graphite 2 pill that pairs with a primary action.",
+      "html": "<button class=\"ds-btn-secondary\" type=\"button\">See the research</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; height: 2.75rem; padding: 0 1.25rem; border: 0; border-radius: 9999px; font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, \"Inter Variable\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif); font-size: 0.9375rem; font-weight: 600; white-space: nowrap; cursor: pointer; transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1), background-color 160ms ease, color 160ms ease; background: var(--color-raised-2, #2c2c2e); color: var(--color-label, #f5f5f7); } .ds-btn-secondary:hover { background: var(--color-raised-3, #3a3a3c); } .ds-btn-secondary:active { transform: scale(0.96); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--color-accent, #2997ff); outline-offset: 3px; }"
+    },
+    {
+      "name": "Glass Pill",
+      "kind": "button",
+      "refersTo": "button-glass",
+      "description": "Floating top-bar control on glass; turns solid graphite on hover and under reduced transparency.",
+      "html": "<div class=\"ds-glass-stage\"><a class=\"ds-btn-glass\" href=\"#\">Download CV</a></div>",
+      "css": ".ds-glass-stage { padding: 1.5rem; border-radius: 1.75rem; background: linear-gradient(135deg, #3a3a3c, #000000 70%); } .ds-btn-glass { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; height: 2.75rem; padding: 0 1.25rem; border: 0; border-radius: 9999px; font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, \"Inter Variable\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif); font-size: 0.9375rem; font-weight: 600; white-space: nowrap; cursor: pointer; transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1), background-color 160ms ease, color 160ms ease; padding: 0 1rem; color: var(--color-label, #f5f5f7); text-decoration: none; background: rgb(28 28 30 / 0.72); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08), 0 8px 24px -8px rgb(0 0 0 / 0.6); } .ds-btn-glass:hover { background: var(--color-raised-2, #2c2c2e); } .ds-btn-glass:active { transform: scale(0.96); } .ds-btn-glass:focus-visible { outline: 2px solid var(--color-accent, #2997ff); outline-offset: 3px; } @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) { .ds-btn-glass { background: var(--color-raised, #1c1c1e); -webkit-backdrop-filter: none; backdrop-filter: none; } }"
+    },
+    {
+      "name": "Arrow Link",
+      "kind": "custom",
+      "refersTo": "link-arrow",
+      "description": "Link Blue text action whose chevron opens into an arrow on hover (transitions.dev learn-more).",
+      "html": "<a class=\"ds-arrow-link\" href=\"#\">Read the paper<span class=\"ds-chev\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" aria-hidden=\"true\"><path class=\"ds-arm-top\" d=\"M6 4L10 8\"/><path class=\"ds-arm-bot\" d=\"M10 8L6 12\"/></svg></span></a>",
+      "css": ".ds-arrow-link { display: inline-flex; align-items: center; gap: 0.125rem; min-height: 2.75rem; font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, \"Inter Variable\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif); font-size: 1.0625rem; font-weight: 500; color: var(--color-accent, #2997ff); text-decoration: none; text-underline-offset: 0.2em; text-decoration-thickness: 1px; } .ds-arrow-link:hover { text-decoration: underline; } .ds-arrow-link:focus-visible { outline: 2px solid var(--color-accent, #2997ff); outline-offset: 3px; border-radius: 6px; } .ds-chev { display: inline-flex; transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-chev path { transform-box: view-box; transform-origin: 10px 8px; transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-arrow-link:hover .ds-chev { transform: translateX(2px); } .ds-arrow-link:hover .ds-arm-top { transform: rotate(8deg); } .ds-arrow-link:hover .ds-arm-bot { transform: rotate(-8deg); } @media (prefers-reduced-motion: reduce) { .ds-chev, .ds-chev path { transition: none; } }"
+    },
+    {
+      "name": "Dynamic Island",
+      "kind": "nav",
+      "refersTo": "dynamic-island",
+      "description": "Centred glass capsule naming the current chapter, with a scrubbed reading-progress line; opens the chapter menu.",
+      "html": "<button class=\"ds-island\" type=\"button\" aria-expanded=\"false\"><span class=\"ds-island-label\">Research</span><svg class=\"ds-island-chev\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg><span class=\"ds-island-track\" aria-hidden=\"true\"><span class=\"ds-island-fill\"></span></span></button>",
+      "css": ".ds-island { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; height: 2.75rem; padding: 0 0.75rem 0 1rem; overflow: hidden; border: 0; border-radius: 9999px; font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, \"Inter Variable\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif); font-size: 0.9375rem; font-weight: 600; color: var(--color-label, #f5f5f7); background: rgb(28 28 30 / 0.72); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08), 0 8px 24px -8px rgb(0 0 0 / 0.6); cursor: pointer; transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-island:active { transform: scale(0.96); } .ds-island:focus-visible { outline: 2px solid var(--color-accent, #2997ff); outline-offset: 3px; } .ds-island-chev { color: rgb(235 235 245 / 0.64); transition: transform 250ms ease; } .ds-island[aria-expanded=\"true\"] .ds-island-chev { transform: rotate(180deg); } .ds-island-track { position: absolute; left: 1rem; right: 1rem; bottom: 6px; height: 2px; overflow: hidden; border-radius: 9999px; background: rgb(255 255 255 / 0.12); } .ds-island-fill { display: block; width: 100%; height: 100%; background: rgb(245 245 247 / 0.8); transform: scaleX(0.38); transform-origin: left; } @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) { .ds-island { background: var(--color-raised, #1c1c1e); -webkit-backdrop-filter: none; backdrop-filter: none; } }"
+    },
+    {
+      "name": "Filter Tabs",
+      "kind": "nav",
+      "refersTo": "filter-tabs",
+      "description": "Graphite track with a Label White pill that slides under the selected tab (transitions.dev tabs sliding).",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\" aria-label=\"Filter projects\"><span class=\"ds-tabs-pill\" aria-hidden=\"true\"></span><button class=\"ds-tab\" role=\"tab\" aria-selected=\"true\">All</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Research</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">ML</button></div>",
+      "css": ".ds-tabs { position: relative; display: inline-flex; align-items: center; gap: 3px; padding: 3px; border-radius: 48px; background: var(--color-raised, #1c1c1e); } .ds-tabs-pill { position: absolute; top: 3px; left: 3px; width: 52px; height: 36px; border-radius: 48px; background: var(--color-label, #f5f5f7); transition: transform 250ms cubic-bezier(0.22, 1, 0.36, 1), width 250ms cubic-bezier(0.22, 1, 0.36, 1); pointer-events: none; } .ds-tab { position: relative; z-index: 1; height: 36px; padding: 4px 16px; border: 0; border-radius: 48px; background: transparent; font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, \"Inter Variable\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif); font-size: 0.9375rem; font-weight: 600; color: rgb(235 235 245 / 0.64); cursor: pointer; transition: color 250ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-tab:not([aria-selected=\"true\"]):hover { color: var(--color-label, #f5f5f7); } .ds-tab[aria-selected=\"true\"] { color: #000000; } .ds-tab:focus-visible { outline: 2px solid var(--color-accent, #2997ff); outline-offset: 3px; } @media (prefers-reduced-motion: reduce) { .ds-tabs-pill, .ds-tab { transition: none; } }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card-project",
+      "description": "Graphite card, 0.5rem inset, concentric 16:10 media frame for the owner's own artefact, title, summary, tags and arrow links; tilts toward a fine pointer under a cursor glare.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-media\" role=\"img\" aria-label=\"Project artefact\"></div><div class=\"ds-card-body\"><h3 class=\"ds-card-title\">fMRI super-resolution with latent diffusion</h3><p class=\"ds-card-summary\">Bachelor thesis: a latent diffusion model in PyTorch that super-resolves fMRI brain scans.</p><ul class=\"ds-tags\"><li>PyTorch</li><li>Diffusion models</li><li>Medical imaging</li></ul><a class=\"ds-card-link\" href=\"#\">Read the paper</a></div><div class=\"ds-card-glare\" aria-hidden=\"true\"></div></article>",
+      "css": ".ds-card { position: relative; display: flex; flex-direction: column; max-width: 380px; padding: 0.5rem; overflow: hidden; border-radius: 1.75rem; background: var(--color-raised, #1c1c1e); font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, \"Inter Variable\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif); transform: perspective(1000px) rotateX(0deg) rotateY(0deg); transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-card:hover { transform: perspective(1000px) rotateX(1.5deg) rotateY(-2deg); transition-duration: 400ms; } .ds-card-media { position: relative; aspect-ratio: 16 / 10; border-radius: 1.25rem; background: linear-gradient(160deg, #3a3a3c, #000000); } .ds-card-media::after { content: ''; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1); } .ds-card-body { display: flex; flex-direction: column; gap: 1rem; padding: 1rem; } .ds-card-title { margin: 0; font-size: 1.375rem; font-weight: 600; line-height: 1.25; letter-spacing: -0.015em; color: var(--color-label, #f5f5f7); } .ds-card-summary { margin: 0; font-size: 1.0625rem; line-height: 1.55; color: rgb(235 235 245 / 0.64); } .ds-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; } .ds-tags li { padding: 0.125rem 0.625rem; border-radius: 9999px; background: var(--color-raised-2, #2c2c2e); font-size: 0.8125rem; color: rgb(235 235 245 / 0.64); } .ds-card-link { font-size: 1.0625rem; font-weight: 500; color: var(--color-accent, #2997ff); text-decoration: none; } .ds-card-link:hover { text-decoration: underline; } .ds-card-link:focus-visible { outline: 2px solid var(--color-accent, #2997ff); outline-offset: 3px; border-radius: 6px; } .ds-card-glare { position: absolute; inset: 0; pointer-events: none; opacity: 0; mix-blend-mode: screen; background: radial-gradient(circle 200px at 35% 25%, rgba(255,255,255,0.22), rgba(255,255,255,0.04) 58%, rgba(255,255,255,0) 78%); transition: opacity 300ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-card:hover .ds-card-glare { opacity: 0.22; } @media (prefers-reduced-motion: reduce) { .ds-card, .ds-card:hover { transform: none; transition: none; } }"
+    },
+    {
+      "name": "Stage Panel with Chapter Heading",
+      "kind": "custom",
+      "refersTo": "stage-panel",
+      "description": "Graphite stage panel (2.5rem corners) opened by a chapter heading: a statement plus a muted second clause, no eyebrow, then a lead.",
+      "html": "<section class=\"ds-stage\"><h2 class=\"ds-chapter\">Let’s talk. <span class=\"ds-muted\">Open to roles in AI research and engineering.</span></h2><p class=\"ds-lead\">Based in Dublin. Happy to work in Dublin, London, Munich, Budapest or remotely.</p></section>",
+      "css": ".ds-stage { padding: 2.5rem; border-radius: 2.5rem; background: var(--color-raised, #1c1c1e); font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, \"Inter Variable\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif); } .ds-chapter { margin: 0; max-width: 18ch; font-size: clamp(2.25rem, 1.4rem + 3.8vw, 4.5rem); font-weight: 700; line-height: 1.04; letter-spacing: -0.035em; color: var(--color-label, #f5f5f7); text-wrap: balance; } .ds-muted { color: rgb(235 235 245 / 0.64); } .ds-lead { margin: 1.5rem 0 0; max-width: 46ch; font-size: clamp(1.125rem, 1rem + 0.45vw, 1.375rem); line-height: 1.45; color: rgb(235 235 245 / 0.64); text-wrap: pretty; }"
+    },
+    {
+      "name": "Accordion Row",
+      "kind": "custom",
+      "description": "Hairline experience row: tabular period, role and organisation, chevron that flips; panel opens by grid rows with a blur-in (transitions.dev accordion).",
+      "html": "<div class=\"ds-acc\" data-open=\"true\"><button class=\"ds-acc-head\" type=\"button\" aria-expanded=\"true\"><span class=\"ds-acc-period\">Feb – Aug 2026</span><span><span class=\"ds-acc-role\">AI Research Intern</span><span class=\"ds-acc-org\">BME × Ericsson · Budapest · part-time</span></span><span class=\"ds-acc-chev\" aria-hidden=\"true\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 6l4 4 4-4\"/></svg></span></button><div class=\"ds-acc-panel\"><div class=\"ds-acc-inner\"><ul class=\"ds-acc-points\"><li>Built a pipeline of 2K+ synthetic XML graphs for GNN and GAN training.</li></ul></div></div></div>",
+      "css": ".ds-acc { border-bottom: 1px solid rgb(255 255 255 / 0.12); font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, \"Inter Variable\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif); } .ds-acc-head { display: grid; grid-template-columns: 11rem minmax(0, 1fr) auto; align-items: start; gap: 0.25rem 2.5rem; width: 100%; padding: 2rem 0; border: 0; background: transparent; text-align: left; cursor: pointer; color: inherit; font: inherit; } .ds-acc-head:focus-visible { outline: 2px solid var(--color-accent, #2997ff); outline-offset: 3px; } .ds-acc-period { padding-top: 0.5rem; font-size: 0.9375rem; font-variant-numeric: tabular-nums; color: rgb(235 235 245 / 0.64); } .ds-acc-role { display: block; font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem); font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; color: var(--color-label, #f5f5f7); } .ds-acc-org { display: block; margin-top: 0.25rem; font-size: 1.0625rem; color: rgb(235 235 245 / 0.64); } .ds-acc-chev { display: inline-flex; padding-top: 0.5rem; color: rgb(235 235 245 / 0.64); transition: transform 250ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-acc[data-open=\"true\"] .ds-acc-chev { transform: scaleY(-1); } .ds-acc-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 250ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-acc[data-open=\"true\"] .ds-acc-panel { grid-template-rows: 1fr; } .ds-acc-inner { overflow: hidden; opacity: 0; filter: blur(2px); transition: opacity 250ms cubic-bezier(0.22, 1, 0.36, 1), filter 250ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-acc[data-open=\"true\"] .ds-acc-inner { opacity: 1; filter: blur(0); } .ds-acc-points { margin: 0; padding: 0 0 2rem 13.5rem; list-style: none; max-width: 68ch; } .ds-acc-points li { position: relative; padding-left: 1.25rem; font-size: 1.0625rem; line-height: 1.55; color: var(--color-label, #f5f5f7); } .ds-acc-points li::before { content: ''; position: absolute; left: 0; top: 0.7em; width: 4px; height: 4px; border-radius: 9999px; background: rgb(235 235 245 / 0.42); } @media (prefers-reduced-motion: reduce) { .ds-acc-panel, .ds-acc-inner, .ds-acc-chev { transition: none; } }"
+    },
+    {
+      "name": "Chips, Tags and Status",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Graphite toolkit chips that lift on fine-pointer hover, Graphite 2 tags, and the Graphite 3 \"Now\" badge with a live dot.",
+      "html": "<div class=\"ds-chipset\"><ul class=\"ds-chips\"><li>PyTorch</li><li>LangGraph</li><li>Docker</li></ul><ul class=\"ds-tagrow\"><li>Medical imaging</li><li>LLM agents</li></ul><span class=\"ds-badge\"><span class=\"ds-dot\" aria-hidden=\"true\"></span>Now</span></div>",
+      "css": ".ds-chipset { display: flex; flex-direction: column; gap: 1rem; font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, \"Inter Variable\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif); } .ds-chips, .ds-tagrow { display: flex; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; } .ds-chips { gap: 0.5rem; } .ds-chips li { padding: 0.375rem 0.875rem; border-radius: 9999px; background: var(--color-raised, #1c1c1e); font-size: 0.9375rem; color: var(--color-label, #f5f5f7); transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1); } @media (hover: hover) and (pointer: fine) { .ds-chips li:hover { transform: translateY(-4px) scale(1.05); } } .ds-tagrow { gap: 6px; } .ds-tagrow li { padding: 0.125rem 0.625rem; border-radius: 9999px; background: var(--color-raised-2, #2c2c2e); font-size: 0.8125rem; color: rgb(235 235 245 / 0.64); } .ds-badge { display: inline-flex; align-self: flex-start; align-items: center; gap: 6px; padding: 0.125rem 0.625rem; border-radius: 9999px; background: var(--color-raised-3, #3a3a3c); font-size: 0.8125rem; font-weight: 600; color: var(--color-label, #f5f5f7); } .ds-dot { width: 6px; height: 6px; border-radius: 9999px; background: var(--color-live, #2997ff); } @media (prefers-reduced-motion: reduce) { .ds-chips li { transition: none; transform: none; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Keynote Stage",
+    "overview": "The site presents one person the way a product keynote presents one product. A single subject stands on a black stage, the type is huge and declarative, and each chapter pins and plays as the visitor scrolls. The owner's own photographs are the hero objects. Every colour on the page other than one system blue comes from those photographs. The material language is Apple's dark-mode HIG, which the owner set as a binding commitment. Depth is a lighter graphite surface, glass appears only on controls that float, and pill buttons press in at a 44px touch target.\n\nDensity is low. A chapter opens with one headline, a muted second clause and at most a short lead, then gives its content wide margins and a long vertical run (`clamp(6rem, 12vw, 10rem)` between chapters). Motion is choreography rather than decoration. GSAP ScrollTrigger scrubs the camera moves to the scrollbar, so the visitor's own input drives them. ScrollSmoother runs only for fine pointers with motion allowed. SplitText raises chapter headings line by line. The micro-interactions (menu, modal, toast, tabs, tilt, accordion, number pop, text and icon swaps) are transitions.dev recipes running on their own duration and easing tokens. One switch, `<html data-motion=\"full|reduce\">`, drives both the Tailwind `reduced:` / `full-motion:` variants and every `gsap.matchMedia` branch. The reduced path is a complete static layout, not a degraded animation.\n\nThe world was chosen over, and rejects, the glass-card grid portfolio with a typewriter role line.",
+    "keyCharacteristics": [
+      "One black stage (`#000`). Elevation comes from graphite steps, never from a shadow under a surface.",
+      "One accent, system blue, used only for actions, links and live status.",
+      "One sans family. System SF on Apple devices, self-hosted Inter Variable (optical-size axis) everywhere else.",
+      "Chapter headings are a statement plus a muted second clause, with no eyebrow.",
+      "Glass only on floating controls, with a solid graphite fallback.",
+      "Large continuous radii (2.5rem stage, 1.75rem card) with concentric inner corners.",
+      "Scroll-scrubbed camera moves through the owner's own photos: the hero dolly-and-orbit and the milestones drone flight.",
+      "Every photograph is the owner's own or an artefact of the work. Never stock."
+    ],
+    "rules": [
+      {
+        "name": "The One Blue Rule",
+        "body": "Blue means \"you can act here\" or \"this is live\". It never colours a heading, a decorative icon, a gradient or a background wash. Link text uses #2997ff and filled buttons use #0071e3. The two are never swapped.",
+        "section": "colors"
+      },
+      {
+        "name": "The Photos Are The Colour Rule",
+        "body": "Apart from blue, the photographs supply every hue on the page. The interface itself stays in graphite and white.",
+        "section": "colors"
+      },
+      {
+        "name": "The Muted Second Clause Rule",
+        "body": "A chapter heading is a short statement in Label White followed by a second clause in Secondary Label, in the same size and weight (\"Work. From diffusion models to a car that teaches itself to drive.\"). Nothing sits above it: no eyebrow, no kicker, no number.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tracking Follows Size Rule",
+        "body": "Tracking tightens as size grows: -0.04em at display, -0.035em at headline, -0.02em at title, -0.015em at card title, and normal at body. Text is never letter-spaced open and never uppercased.",
+        "section": "typography"
+      },
+      {
+        "name": "The Stage Or Cards Rule",
+        "body": "A chapter whose content is not already a set of cards lives on a graphite stage panel. This covers the hero, the milestones flight, the experience rows and contact. A chapter whose content is cards (research, work) runs on the bare black stage. A stage panel holds type, hairline rows, controls and photographs, never another card.",
+        "section": "layout"
+      },
+      {
+        "name": "The Lighter-Is-Closer Rule",
+        "body": "To bring a surface forward, raise it one graphite step. Do not cast a shadow under it.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Glass Floats Rule",
+        "body": "Glass is reserved for controls that float over scrolling content. Under `prefers-reduced-transparency: reduce` or `prefers-contrast: more` it becomes solid Graphite (#1c1c1e) with no blur. Glass never sits on a content surface.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Concentric Corner Rule",
+        "body": "An inner radius equals the outer radius minus the gap between them (1.75rem − 0.5rem = 1.25rem; 2.5rem − 0.5rem = 2rem; 26px − 8px = 18px). Never put the same radius inside and out.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do bring a surface forward by raising it one graphite step (#000 → #1c1c1e → #2c2c2e → #3a3a3c).",
+      "Do open every chapter with the Chapter Heading pattern: Headline size, 700, -0.035em, max 18ch, then a second clause in Secondary Label.",
+      "Do use #2997ff for link text and live status, and #0071e3 with a white label for filled buttons.",
+      "Do give every pill button a 44px target and the 0.96 press scale, and give every interactive element the 2px Link Blue focus ring at 3px offset.",
+      "Do nest corners concentrically: the inner radius is the outer radius minus the gap.",
+      "Do frame every photograph with the 1px Photo Edge and serve it AVIF → WebP → JPEG with intrinsic width and height.",
+      "Do scrub scroll-driven camera moves to the scrollbar (scrub 0.4–0.8) and keep captions in a still 2D frame above any 3D motion.",
+      "Do use the transitions.dev recipe and its own tokens for a micro-interaction (`--duration-*`, `--ease-smooth-out`, and the per-recipe tokens) rather than inventing a new timing.",
+      "Do key all motion off `<html data-motion>`: the `reduced:` / `full-motion:` variants in markup and `MQ.motion` in `gsap.matchMedia`. Every reduced path must be a complete, readable static layout.",
+      "Do bind hover tilt, chip lift and ScrollSmoother to fine pointers only, so touch devices keep native scrolling."
+    ],
+    "donts": [
+      "Don't lift a panel, card, chip or tag with a drop shadow. The only drop shadow in the system belongs to floating glass.",
+      "Don't put glass on a content surface, and don't ship glass without the solid Graphite fallback for reduced transparency and increased contrast.",
+      "Don't put an eyebrow, kicker, number or label above a chapter heading.",
+      "Don't use blue for headings, decorative icons, gradients or background washes, and don't add a second UI accent colour.",
+      "Don't illustrate a project with stock or generated imagery. A project without its own photo or artefact is listed as a hairline row.",
+      "Don't put a card inside a stage panel.",
+      "Don't build the glass-card grid portfolio with a typewriter role line.",
+      "Don't set reading prose below the 17px body size. 15px is for meta and controls, and 13px is for tags only.",
+      "Don't loop ambient motion on content. The shimmer marks the under-review status line and the pulse marks a loading photo, and both stop under reduced motion."
+    ]
+  }
+}

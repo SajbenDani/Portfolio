@@ -4,7 +4,6 @@ node_modules/
 # Old portfolio files (pre-React migration)
 Portfolio.html
 main.js
-design.md
 interaction.md
 outline.md
 
@@ -40,3 +39,10 @@ Thumbs.db
 logs/
 *.log
 npm-debug.log*
+
+# Impeccable working files (review screenshots, decision page, local state)
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/questions/
+.impeccable/hook.cache.json
+.impeccable/config.local.json

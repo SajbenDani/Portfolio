@@ -8,21 +8,20 @@ export default defineConfig({
   // Change to '/' if you rename the repo to SajbenDani.github.io
   base: '/Portfolio/',
   plugins: [react(), tailwindcss()],
+  server: {
+    // Tool state and build output are not app sources; don't full-reload on them.
+    watch: { ignored: ['**/.impeccable/**', '**/.code-review-graph/**', '**/uploads/**', '**/dist/**', '**/*.tsbuildinfo', '**/tasks/**'] },
+  },
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') },
-    // Force a single React instance across pre-bundled deps (R3F, drei,
-    // use-gesture, framer-motion) — otherwise hooks throw "Invalid hook call".
     dedupe: ['react', 'react-dom'],
-  },
-  optimizeDeps: {
-    include: ['react', 'react-dom', '@use-gesture/react', 'framer-motion'],
   },
   build: {
     rollupOptions: {
       output: {
         manualChunks: {
-          // Split the heavy WebGL stack into its own cacheable chunk.
-          three: ['three', '@react-three/fiber', '@react-three/drei'],
+          // GSAP + plugins change rarely; keep them in their own cacheable chunk.
+          gsap: ['gsap', 'gsap/ScrollTrigger', 'gsap/ScrollSmoother', 'gsap/SplitText', 'gsap/Flip', '@gsap/react'],
         },
       },
     },
